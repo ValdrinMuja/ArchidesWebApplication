@@ -110,7 +110,7 @@ namespace ArchidesArchitectureWeb.DataAcc
                     projekti.TitulliProjektit = reader["@prmTitulli"].ToString();
                     projekti.Lokacioni = reader["@prmLokacioni"].ToString();
                     projekti.Viti = DateTime.Parse(reader["@prmViti"].ToString());
-                    projekti.Madhesia = reader["@prmMadhesia"].ToString());
+                    projekti.Madhesia = reader["@prmMadhesia"].ToString();
                     projekti.KategoriaID = int.Parse(reader["@prmKategoriaID"].ToString());
                     projekti.Statusi = reader["@prmStatusi"].ToString();
                     projekti.Pershkrimi = reader["@prmPershkrimi"].ToString();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Sql;
+using System.Data;
 using System.Data.SqlClient;
 using ArchidesArchitectureWeb.Models;
 
@@ -10,22 +11,19 @@ namespace ArchidesArchitectureWeb.DataAcc
 {
     public class AccRoli
     {
-        public static bool ShtoRol(Roli roli)
+        public static void ShtoRol(Roli roli)
         {
-            bool uRegjistrua = false;
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand("usp_tblRoli_Insert", conn);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 //foreign keys
-                cmd.Parameters.AddWithValue("@prmLlojiIRolit", roli.LlojiIRolit);        
+                cmd.Parameters.AddWithValue("@prmRoli", roli.LlojiIRolit);        
                 conn.Open();
 
                 cmd.ExecuteNonQuery();
-                uRegjistrua = true;
             }
-            return uRegjistrua;
         }
 
         public static bool UpdateRol(Roli roli)
@@ -58,23 +56,17 @@ namespace ArchidesArchitectureWeb.DataAcc
             return uFshij;
         }
 
-        public static List<Roli> ShfaqRol()
+        public static DataTable ShfaqRol()
         {
+            DataTable dataTable = new DataTable();
             List<Roli> listaRolet = new List<Roli>();
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("usp_tblRoli_Select", conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-               while(reader.Read())
-                {
-                    Roli roli = new Roli();
-                    roli.RoliID = int.Parse(reader["@prmRoliID"].ToString());
-                    roli.LlojiIRolit = reader["@prmRoli"].ToString();
-
-                    listaRolet.Add(roli);
-                }
-                return listaRolet;
+                conn.Open();
+                SqlDataAdapter sda = new SqlDataAdapter("usp_tblRoli_Select", conn);
+                sda.Fill(dataTable);
             }
+            return dataTable;
         }
     }
 }

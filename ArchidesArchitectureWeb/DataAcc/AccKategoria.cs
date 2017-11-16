@@ -73,7 +73,7 @@ namespace ArchidesArchitectureWeb.DataAcc
                 {
                     Kategoria kategoria = new Kategoria();
                     kategoria.KategoriaID = int.Parse(reader["@prmKategoriaID"].ToString());
-                    kategoria.EmriKategoria = reader["@prmKategoria"].ToString());
+                    kategoria.EmriKategoria = reader["@prmKategoria"].ToString();
 
                     listaKategoria.Add(kategoria);
                     listaKategoria.Add(kategoria);

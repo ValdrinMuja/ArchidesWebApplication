@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data;
+using System.Data.SqlClient;
+
 
 namespace ArchidesArchitectureWeb.Controllers
 {
     public class RoliController : Controller
     {
         // GET: Roli
+        [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return View(DataAcc.AccRoli.ShfaqRol());
         }
 
         // GET: Roli/Details/5
@@ -21,19 +25,20 @@ namespace ArchidesArchitectureWeb.Controllers
         }
 
         // GET: Roli/Create
+        [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            return View(new Models.Roli());
         }
 
         // POST: Roli/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Models.Roli roli)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                DataAcc.AccRoli.ShtoRol(roli);
                 return RedirectToAction("Index");
             }
             catch
