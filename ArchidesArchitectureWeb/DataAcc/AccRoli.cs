@@ -17,8 +17,7 @@ namespace ArchidesArchitectureWeb.DataAcc
             {
                 SqlCommand cmd = new SqlCommand("usp_tblRoli_Insert", conn);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                //foreign keys
+                
                 cmd.Parameters.AddWithValue("@prmRoli", roli.LlojiIRolit);        
                 conn.Open();
 
@@ -26,19 +25,17 @@ namespace ArchidesArchitectureWeb.DataAcc
             }
         }
 
-        public static bool UpdateRol(Roli roli)
+        public static void UpdateRol(Roli roli)
         {
-            bool uUpdate = false;
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand("usp_tblRoli_Update", conn);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@prmLlojiIRolit", roli.LlojiIRolit);
+                cmd.Parameters.AddWithValue("@prmRoliID", roli.RoliID);
+                cmd.Parameters.AddWithValue("@prmRoli", roli.LlojiIRolit);
                 conn.Open();
                 cmd.ExecuteNonQuery();
-                uUpdate = true;
             }
-            return uUpdate;
         }
 
         public static bool FshijRol(Roli roli)
@@ -59,7 +56,6 @@ namespace ArchidesArchitectureWeb.DataAcc
         public static DataTable ShfaqRol()
         {
             DataTable dataTable = new DataTable();
-            List<Roli> listaRolet = new List<Roli>();
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
                 conn.Open();
@@ -67,6 +63,26 @@ namespace ArchidesArchitectureWeb.DataAcc
                 sda.Fill(dataTable);
             }
             return dataTable;
+        }
+
+        public static Roli MerrRol(int id)
+        {
+            Roli roli = new Roli();
+            DataTable dataTable = new DataTable();
+            using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
+            {
+                conn.Open();
+                SqlDataAdapter sda = new SqlDataAdapter("usp_tblRoli_SelectById", conn);
+                sda.SelectCommand.Parameters.AddWithValue("@prmRoliID", id);
+                sda.Fill(dataTable);
+            }
+            if (dataTable.Rows.Count==1)
+            {
+                roli.RoliID = int.Parse(dataTable.Rows[0][0].ToString());
+                roli.LlojiIRolit = dataTable.Rows[0][1].ToString();
+                return roli;
+            }
+            return null;
         }
     }
 }

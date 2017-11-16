@@ -17,12 +17,7 @@ namespace ArchidesArchitectureWeb.Controllers
         {
             return View(DataAcc.AccRoli.ShfaqRol());
         }
-
-        // GET: Roli/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+        
 
         // GET: Roli/Create
         [HttpGet]
@@ -50,17 +45,25 @@ namespace ArchidesArchitectureWeb.Controllers
         // GET: Roli/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            if (DataAcc.AccRoli.MerrRol(id)!=null)
+            {
+                return View(DataAcc.AccRoli.MerrRol(id));
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            
         }
 
         // POST: Roli/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Models.Roli roli)
         {
             try
             {
                 // TODO: Add update logic here
-
+                DataAcc.AccRoli.UpdateRol(roli);
                 return RedirectToAction("Index");
             }
             catch

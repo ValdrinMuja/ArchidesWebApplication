@@ -1,27 +1,25 @@
-﻿@model IEnumerable<ArchidesArchitectureWeb.DataAcc.AccRoli>
-
+﻿@Model System.Data.DataTable
 @{
     ViewBag.Title = "Index";
 }
-
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<table class="table table-bordered table-striped">
     <tr>
-        <th></th>
+        <th>RoliID</th>
+        <th>Roli</th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
-
+    @for (int i = 0; i < Model.Rows.Count; i++)
+    {
+        <tr>
+            <td>@Model.Rows[i][0]</td>
+            <td>@Model.Rows[i][1]</td>
+            <td>
+                <a href="@Url.Action("Edit","Roli",new {@id=Model.Rows[i][0] })">Edit</a>
+            </td>
+        </tr>
+        
+    }
 </table>
+
+<a href="@Url.Action("Create","Roli")">Shto Role</a>
