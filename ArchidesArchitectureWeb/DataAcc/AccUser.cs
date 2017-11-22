@@ -81,14 +81,14 @@ namespace ArchidesArchitectureWeb.DataAcc
                 SqlCommand cmd = new SqlCommand("usp_tblUseri_Delete", conn);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@prmUserID", user.UserID);
-                //Bla Bla
                 conn.Open();
                 cmd.ExecuteNonQuery();
+                //Valdrin tu e testu jom
             }
         }
 
      
-
+    
 
         public static DataTable ShfaqUser()
         {
