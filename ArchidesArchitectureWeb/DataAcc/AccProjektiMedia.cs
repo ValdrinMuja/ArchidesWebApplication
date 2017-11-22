@@ -57,7 +57,7 @@ namespace ArchidesArchitectureWeb.DataAcc
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 //foreign keys
-                cmd.Parameters.AddWithValue("@prmProjektiID", projektiMedia.Me);
+                cmd.Parameters.AddWithValue("@prmProjektiMediaID", projektiMedia.ProjektMediaID);
                 conn.Open();
 
                 cmd.ExecuteNonQuery();
