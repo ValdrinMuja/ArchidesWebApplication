@@ -40,6 +40,7 @@ namespace ArchidesArchitectureWeb.DataAcc
                 uRegjistrua = true;
             }
             return uRegjistrua;
+            //Test
         }
 
         public static bool UpdateUser(User user)
