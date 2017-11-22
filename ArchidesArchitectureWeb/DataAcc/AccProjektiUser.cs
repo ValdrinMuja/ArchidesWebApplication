@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data.Sql;
+using System.Data;
 using System.Data.SqlClient;
 using ArchidesArchitectureWeb.Models;
 
@@ -48,40 +48,30 @@ namespace ArchidesArchitectureWeb.DataAcc
             return uUpdate;
         }
 
-        public static bool FshijUserNeProjekt(ProjektiUser projektiUser)
+        public static void FshijUserNeProjekt(ProjektiUser projektiUser)
         {
-            bool uFshij = false;
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand("usp_tblProjektiUser_Delete", conn);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                //foreign keys
-                cmd.Parameters.AddWithValue("@prmProjektiID", projektiUser.ProjektiID);
-                cmd.Parameters.AddWithValue("@prmUserID", projektiUser.UserID);
-
+                cmd.Parameters.AddWithValue("@prmProjektiUserID", projektiUser.ProjektiUserID);
                 conn.Open();
                 cmd.ExecuteNonQuery();
-                uFshij = true;
             }
-            return uFshij;
         }
 
-        public static List<ProjektiUser> ShfaqProjektiMedia()
+        
+
+        public static DataTable ShfaqProjektiUser()
         {
-            List<ProjektiUser> listaProjektiUser = new List<ProjektiUser>();
+            DataTable dataTable = new DataTable();
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("usp_tblProjektiUser_Select", conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    ProjektiUser projektiUser = new ProjektiUser();
-                    projektiUser.ProjektiID = int.Parse(reader["@prmProjektiID"].ToString());
-                    projektiUser.UserID = int.Parse(reader["@prmUserID"].ToString());
-                }
-                return listaProjektiUser;
+                conn.Open();
+                SqlDataAdapter sda = new SqlDataAdapter("usp_tblProjektiUser_Select", conn);
+                sda.Fill(dataTable);
             }
+            return dataTable;
         }
     }
 }

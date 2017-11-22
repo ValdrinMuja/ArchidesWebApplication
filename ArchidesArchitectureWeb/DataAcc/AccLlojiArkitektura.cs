@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data.Sql;
+using System.Data;
 using System.Data.SqlClient;
 using ArchidesArchitectureWeb.Models;
 
@@ -61,24 +61,18 @@ namespace ArchidesArchitectureWeb.DataAcc
             return uFshij;
         }
 
-        public static List<LlojiArkitektura> ShfaqLlojinArkitektures()
+       
+
+        public static DataTable ShfaqLlojinArkitektures()
         {
-            List<LlojiArkitektura> listaLlojiArkitektura = new List<LlojiArkitektura>();
+            DataTable dataTable = new DataTable();
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("usp_tblLlojiArkitektura_Select", conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    LlojiArkitektura llojiArkitekture = new LlojiArkitektura();
-                   
-
-                    llojiArkitekture.LlojiArkitekturaID = int.Parse(reader["@prmLlojiArkitekturaID"].ToString());
-                    llojiArkitekture.LlojiIArkitektures = reader["@prmLlojiArkitektura"].ToString();
-                    listaLlojiArkitektura.Add(llojiArkitekture);
-                }
-                return listaLlojiArkitektura;
+                conn.Open();
+                SqlDataAdapter sda = new SqlDataAdapter("usp_tblLlojiArkitektura_Select", conn);
+                sda.Fill(dataTable);
             }
+            return dataTable;
         }
     }
 }

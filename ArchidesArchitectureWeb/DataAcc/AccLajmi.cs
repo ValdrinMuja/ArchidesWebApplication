@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data.Sql;
+using System.Data;
 using System.Data.SqlClient;
 using ArchidesArchitectureWeb.Models;
 
@@ -19,8 +19,8 @@ namespace ArchidesArchitectureWeb.DataAcc
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 //foreign keys
-                cmd.Parameters.AddWithValue("@prmFotoPath",lajm.FotoPath);
-                cmd.Parameters.AddWithValue("@prmUploadTime",lajm.UploadTime);
+                cmd.Parameters.AddWithValue("@prmFotoPath", lajm.FotoPath);
+                cmd.Parameters.AddWithValue("@prmUploadTime", lajm.UploadTime);
                 cmd.Parameters.AddWithValue("@prmTitulli", lajm.Titulli);
                 cmd.Parameters.AddWithValue("@prmPershkrimi", lajm.Pershkrimi);
                 cmd.Parameters.AddWithValue("@prmUserID", lajm.UserID);
@@ -76,29 +76,19 @@ namespace ArchidesArchitectureWeb.DataAcc
             return uFshij;
         }
 
-        public static List<Lajmi> ShfaqLajm()
+
+
+        public static DataTable ShfaqLajm()
         {
-            List<Lajmi> listaLajmet = new List<Lajmi>();
+            DataTable dataTable = new DataTable();
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("usp_tblLajmi_Select", conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                   Lajmi lajmi = new Lajmi();
-                    lajmi.LajmiID = int.Parse(reader["@prmLajmiID"].ToString());
-                    lajmi.UserID = int.Parse(reader["@prmUserID"].ToString());
-                    lajmi.FotoPath = reader["@prmFotoPath"].ToString();
-                    lajmi.UploadTime = DateTime.Parse(reader["@prmUploadTime"].ToString());
-                    lajmi.Titulli = reader["@prmTitulli"].ToString();
-                    lajmi.Pershkrimi = reader["@prmPershkrimi"].ToString();
-
-                    listaLajmet.Add(lajmi);
-                }
-
-                return listaLajmet;
+                conn.Open();
+                SqlDataAdapter sda = new SqlDataAdapter("usp_tblLajmi_Select", conn);
+                sda.Fill(dataTable);
             }
+            return dataTable;
         }
-
     }
+
 }

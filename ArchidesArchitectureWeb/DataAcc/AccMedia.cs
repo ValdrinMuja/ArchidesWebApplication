@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ArchidesArchitectureWeb.Models;
-using System.Data.Sql;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -60,24 +60,18 @@ namespace ArchidesArchitectureWeb.DataAcc
             }
             return uFshij;
         }
+        
 
-        public static List<Media> ShfaqMedia()
+        public static DataTable ShfaqMedia()
         {
-            List<Media> listaMedia = new List<Media>();
+            DataTable dataTable = new DataTable();
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("usp_tblMedia_Select", conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    Media media = new Media();            
-                    media.MediaID = int.Parse(reader["@prmMediaID"].ToString());
-                    media.MediaPath = reader["@prmMediaPath"].ToString();
-                    media.MediaTypeID = int.Parse(reader["@prmMediaTypeID"].ToString());
-                    media.LlojiArkitekturaID = int.Parse(reader["@prmLlojiArkitekturaID"].ToString());
-                }
-                return listaMedia;
+                conn.Open();
+                SqlDataAdapter sda = new SqlDataAdapter("usp_tblMedia_Select", conn);
+                sda.Fill(dataTable);
             }
+            return dataTable;
         }
     }
 }

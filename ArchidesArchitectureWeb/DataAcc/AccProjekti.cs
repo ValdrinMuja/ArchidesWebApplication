@@ -96,30 +96,17 @@ namespace ArchidesArchitectureWeb.DataAcc
 
         }
 
-        public static List<Projekti> ShfaqProjekt()
+       
+        public static DataTable ShfaqProjekt()
         {
-            List<Projekti> listaProjekti = new List<Projekti>();
+            DataTable dataTable = new DataTable();
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("usp_tblProjekti_Select", conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    Projekti projekti = new Projekti();
-                    projekti.ProjektiID = int.Parse(reader["@prmProjektiID"].ToString());
-                    projekti.TitulliProjektit = reader["@prmTitulli"].ToString();
-                    projekti.Lokacioni = reader["@prmLokacioni"].ToString();
-                    projekti.Viti = DateTime.Parse(reader["@prmViti"].ToString());
-                    projekti.Madhesia = reader["@prmMadhesia"].ToString();
-                    projekti.KategoriaID = int.Parse(reader["@prmKategoriaID"].ToString());
-                    projekti.Statusi = reader["@prmStatusi"].ToString();
-                    projekti.Pershkrimi = reader["@prmPershkrimi"].ToString();
-                    projekti.UploadTime = DateTime.Parse(reader["@prmUploadTime"].ToString());
-                    projekti.UserID = int.Parse(reader["@prmUserID"].ToString());
-                    projekti.Aktiv = bool.Parse(reader["@prmAktiv"].ToString());                   
-                }
-                return listaProjekti;
+                conn.Open();
+                SqlDataAdapter sda = new SqlDataAdapter("usp_tblProjekti_Select", conn);
+                sda.Fill(dataTable);
             }
+            return dataTable;
         }
     }
 }

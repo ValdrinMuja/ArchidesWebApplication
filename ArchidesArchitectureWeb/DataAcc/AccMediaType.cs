@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data.Sql;
+using System.Data;
 using System.Data.SqlClient;
 using ArchidesArchitectureWeb.Models;
 
@@ -61,21 +61,17 @@ namespace ArchidesArchitectureWeb.DataAcc
             return uFshij;
         }
 
-        public static List<MediaType> ShfaqMediaType()
+        
+        public static DataTable ShfaqMediaType()
         {
-            List<MediaType> listaMediaType = new List<MediaType>();
+            DataTable dataTable = new DataTable();
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("usp_tblMediaType_Select", conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    MediaType mediaType = new MediaType();            
-                    mediaType.Mediatype = reader["@prmMediaType"].ToString();
-                    mediaType.MediaTypeID = int.Parse(reader["@prmMediaTypeID"].ToString());
-                }
-                return listaMediaType;
+                conn.Open();
+                SqlDataAdapter sda = new SqlDataAdapter("usp_tblMediaType_Select", conn);
+                sda.Fill(dataTable);
             }
+            return dataTable;
         }
     }
 }

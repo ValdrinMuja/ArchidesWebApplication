@@ -38,9 +38,8 @@ namespace ArchidesArchitectureWeb.DataAcc
             }
         }
 
-        public static bool FshijRol(Roli roli)
+        public static void FshijRol(Roli roli)
         {
-            bool uFshij = false;
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand("usp_tblRoli_Fshij", conn);
@@ -48,9 +47,7 @@ namespace ArchidesArchitectureWeb.DataAcc
                 cmd.Parameters.AddWithValue("@prmLlojiIRolit", roli.LlojiIRolit);
                 conn.Open();
                 cmd.ExecuteNonQuery();
-                uFshij = true;
             }
-            return uFshij;
         }
 
         public static DataTable ShfaqRol()
