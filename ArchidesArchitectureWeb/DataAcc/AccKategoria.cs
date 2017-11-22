@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data.Sql;
+using System.Data;
 using System.Data.SqlClient;
 using ArchidesArchitectureWeb.Models;
 
@@ -61,25 +61,17 @@ namespace ArchidesArchitectureWeb.DataAcc
             }
             return uFshij;
         }
-
-        public static List<Kategoria> ShfaqKategori()
+        
+        public static DataTable ShfaqKategoria()
         {
-            List<Kategoria> listaKategoria = new List<Kategoria>();
+            DataTable dataTable = new DataTable();
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("usp_tblKategoria_Select", conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    Kategoria kategoria = new Kategoria();
-                    kategoria.KategoriaID = int.Parse(reader["@prmKategoriaID"].ToString());
-                    kategoria.EmriKategoria = reader["@prmKategoria"].ToString();
-
-                    listaKategoria.Add(kategoria);
-                    listaKategoria.Add(kategoria);
-                }
-                return listaKategoria;
+                conn.Open();
+                SqlDataAdapter sda = new SqlDataAdapter("usp_tblKategoria_Select", conn);
+                sda.Fill(dataTable);
             }
+            return dataTable;
         }
     }
 
