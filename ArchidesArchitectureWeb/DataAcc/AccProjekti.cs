@@ -66,32 +66,18 @@ namespace ArchidesArchitectureWeb.DataAcc
             return uUpdate;
         }
 
-        public static bool FshijProjekt(Projekti projekt)
+        public static void FshijProjekt(Projekti projekt)
         {
-            bool uFshij = false;
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand("usp_tblProjekti_Delete", conn);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue("@prmTitulli", projekt.TitulliProjektit);
-                cmd.Parameters.AddWithValue("@prmLokacioni", projekt.Lokacioni);
-                cmd.Parameters.AddWithValue("@prmViti", projekt.Viti);
-                cmd.Parameters.AddWithValue("@prmMadhesia", projekt.Madhesia);
-                cmd.Parameters.AddWithValue("@prmStatusi", projekt.Statusi);
-                cmd.Parameters.AddWithValue("@prmPershkrimi", projekt.Pershkrimi);
-                cmd.Parameters.AddWithValue("@prmUploadTime", projekt.UploadTime);
-                cmd.Parameters.AddWithValue("@prmAktiv", projekt.Aktiv);
-
-                //foreignKeys
-                cmd.Parameters.AddWithValue("@prmKategoriaID", projekt.KategoriaID);
-                cmd.Parameters.AddWithValue("@prmUserID", projekt.UserID);
+                
+                cmd.Parameters.AddWithValue("@prmProjektiID", projekt.ProjektiID);
                 conn.Open();
 
                 cmd.ExecuteNonQuery();
-                uFshij = true;
             }
-            return uFshij;
 
 
         }
