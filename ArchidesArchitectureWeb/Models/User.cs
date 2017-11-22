@@ -6,7 +6,7 @@ using System.Web;
 namespace ArchidesArchitectureWeb.Models
 {
     public class User
-    {
+    {   
         public int UserID { get; set; }
         public string Emri { get; set; }
         public string Mbiemri { get; set; }
@@ -22,6 +22,7 @@ namespace ArchidesArchitectureWeb.Models
         public string PergaditjaProfesionale { get; set; }
         public string FotoPath { get; set; }
         public bool Aktiv { get; set; }
+
 
         //foreign key
         public int RoliID { get; set; }
