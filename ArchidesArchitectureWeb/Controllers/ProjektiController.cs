@@ -2,14 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.Data;
 using System.Data.SqlClient;
 using ArchidesArchitectureWeb.Models;
 
-namespace ArchidesArchitectureWeb.DataAcc
+namespace ArchidesArchitectureWeb.Controllers
 {
-    public class AccProjekti
+    public class ProjektiController : Controller
     {
+
+        public static DataTable ShfaqProjekt()
+        {
+            DataTable dataTable = new DataTable();
+            using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
+            {
+                conn.Open();
+                SqlDataAdapter sda = new SqlDataAdapter("usp_tblProjekti_Select", conn);
+                sda.Fill(dataTable);
+            }
+            return dataTable;
+        }
+        // GET: Projekti
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        // GET: Projekti/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
         public static bool ShtoProjekt(Projekti projekt)
         {
             bool uRegjistrua = false;
@@ -28,7 +53,7 @@ namespace ArchidesArchitectureWeb.DataAcc
                 cmd.Parameters.AddWithValue("@prmAktiv", projekt.Aktiv);
 
                 //foreignKeys
-                cmd.Parameters.AddWithValue("@prmKategoriaID",projekt.KategoriaID);
+                cmd.Parameters.AddWithValue("@prmKategoriaID", projekt.KategoriaID);
                 cmd.Parameters.AddWithValue("@prmUserID", projekt.UserID);
                 conn.Open();
 
@@ -37,6 +62,30 @@ namespace ArchidesArchitectureWeb.DataAcc
             }
             return uRegjistrua;
         }
+
+        // GET: Projekti/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Projekti/Create
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
 
         public static bool UpdateProjekt(Projekti projekt)
         {
@@ -66,33 +115,62 @@ namespace ArchidesArchitectureWeb.DataAcc
             return uUpdate;
         }
 
+        // GET: Projekti/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: Projekti/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
         public static void FshijProjekt(Projekti projekt)
         {
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
                 SqlCommand cmd = new SqlCommand("usp_tblProjekti_Delete", conn);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                
+
                 cmd.Parameters.AddWithValue("@prmProjektiID", projekt.ProjektiID);
                 conn.Open();
 
                 cmd.ExecuteNonQuery();
             }
-
-
+        }
+        // GET: Projekti/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
         }
 
-       
-        public static DataTable ShfaqProjekt()
+        // POST: Projekti/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
         {
-            DataTable dataTable = new DataTable();
-            using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
+            try
             {
-                conn.Open();
-                SqlDataAdapter sda = new SqlDataAdapter("usp_tblProjekti_Select", conn);
-                sda.Fill(dataTable);
+                // TODO: Add delete logic here
+
+                return RedirectToAction("Index");
             }
-            return dataTable;
+            catch
+            {
+                return View();
+            }
         }
     }
 }

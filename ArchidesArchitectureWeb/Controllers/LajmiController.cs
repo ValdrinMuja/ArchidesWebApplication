@@ -2,14 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.Data;
 using System.Data.SqlClient;
 using ArchidesArchitectureWeb.Models;
 
-namespace ArchidesArchitectureWeb.DataAcc
+namespace ArchidesArchitectureWeb.Controllers
 {
-    public class AccLajmi
+    public class LajmiController : Controller
     {
+        public static DataTable ShfaqLajm()
+        {
+            DataTable dataTable = new DataTable();
+            using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
+            {
+                conn.Open();
+                SqlDataAdapter sda = new SqlDataAdapter("usp_tblLajmi_Select", conn);
+                sda.Fill(dataTable);
+            }
+            return dataTable;
+        }
+        // GET: Lajmi
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        // GET: Lajmi/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+
         public static bool ShtoLajm(Lajmi lajm)
         {
             bool uRegjistrua = false;
@@ -31,6 +56,29 @@ namespace ArchidesArchitectureWeb.DataAcc
             }
             return uRegjistrua;
         }
+
+        // GET: Lajmi/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Lajmi/Create
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
 
         public static bool UpdateLajm(Lajmi lajm)
         {
@@ -54,6 +102,29 @@ namespace ArchidesArchitectureWeb.DataAcc
             return uUpdate;
         }
 
+        // GET: Lajmi/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: Lajmi/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
         public static bool FshijLajm(Lajmi lajm)
         {
             bool uFshij = false;
@@ -75,20 +146,26 @@ namespace ArchidesArchitectureWeb.DataAcc
             }
             return uFshij;
         }
-
-
-
-        public static DataTable ShfaqLajm()
+        // GET: Lajmi/Delete/5
+        public ActionResult Delete(int id)
         {
-            DataTable dataTable = new DataTable();
-            using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
+            return View();
+        }
+
+        // POST: Lajmi/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
             {
-                conn.Open();
-                SqlDataAdapter sda = new SqlDataAdapter("usp_tblLajmi_Select", conn);
-                sda.Fill(dataTable);
+                // TODO: Add delete logic here
+
+                return RedirectToAction("Index");
             }
-            return dataTable;
+            catch
+            {
+                return View();
+            }
         }
     }
-
 }

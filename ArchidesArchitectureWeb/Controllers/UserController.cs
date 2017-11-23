@@ -2,14 +2,40 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.Data;
 using System.Data.SqlClient;
 using ArchidesArchitectureWeb.Models;
 
-namespace ArchidesArchitectureWeb.DataAcc
+namespace ArchidesArchitectureWeb.Controllers
 {
-    public class AccUser
+    public class UserController : Controller
     {
+
+        public static DataTable ShfaqUser()
+        {
+            DataTable dataTable = new DataTable();
+            using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
+            {
+                conn.Open();
+                SqlDataAdapter sda = new SqlDataAdapter("usp_tblUseri_Select", conn);
+                sda.Fill(dataTable);
+            }
+            return dataTable;
+        }
+        // GET: User
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        // GET: User/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+
         public static bool ShtoUser(User user)
         {
             bool uRegjistrua = false;
@@ -40,8 +66,29 @@ namespace ArchidesArchitectureWeb.DataAcc
                 uRegjistrua = true;
             }
             return uRegjistrua;
-            //Test
         }
+        // GET: User/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: User/Create
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
 
         public static bool UpdateUser(User user)
         {
@@ -74,6 +121,28 @@ namespace ArchidesArchitectureWeb.DataAcc
             }
             return uUpdate;
         }
+        // GET: User/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: User/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
 
         public static void FshijUser(User user)
         {
@@ -88,19 +157,26 @@ namespace ArchidesArchitectureWeb.DataAcc
             }
         }
 
-     
-    
-
-        public static DataTable ShfaqUser()
+        // GET: User/Delete/5
+        public ActionResult Delete(int id)
         {
-            DataTable dataTable = new DataTable();
-            using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
+            return View();
+        }
+
+        // POST: User/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
             {
-                conn.Open();
-                SqlDataAdapter sda = new SqlDataAdapter("usp_tblUseri_Select", conn);
-                sda.Fill(dataTable);
+                // TODO: Add delete logic here
+
+                return RedirectToAction("Index");
             }
-            return dataTable;
+            catch
+            {
+                return View();
+            }
         }
     }
 }

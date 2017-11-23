@@ -121,12 +121,16 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\SlideShow.css" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="ImagesSlideShow\img1.jpg" />
+    <Content Include="ImagesSlideShow\img2.jpg" />
+    <Content Include="ImagesSlideShow\img4.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -136,22 +140,23 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\JSslideShow.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KategoriaController.cs" />
+    <Compile Include="Controllers\LajmiController.cs" />
+    <Compile Include="Controllers\LlojiArkitekturaController.cs" />
+    <Compile Include="Controllers\ProjektiController.cs" />
     <Compile Include="Controllers\RoliController.cs" />
-    <Compile Include="DataAcc\AccKategoria.cs" />
-    <Compile Include="DataAcc\AccLajmi.cs" />
-    <Compile Include="DataAcc\AccLlojiArkitektura.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DataAcc\AccMedia.cs" />
     <Compile Include="DataAcc\AccMediaType.cs" />
-    <Compile Include="DataAcc\AccProjekti.cs" />
     <Compile Include="DataAcc\AccProjektiMedia.cs" />
     <Compile Include="DataAcc\AccProjektiUser.cs" />
-    <Compile Include="DataAcc\AccRoli.cs" />
-    <Compile Include="DataAcc\AccUser.cs" />
     <Compile Include="DataAcc\Connection.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -175,11 +180,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Roli\Create.cshtml" />
     <Content Include="Views\Roli\Index.cshtml" />
     <Content Include="Views\Roli\Edit.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Shared\MasterPageAdmin.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -189,6 +197,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Kategoria\" />
+    <Folder Include="Views\Lajmi\" />
+    <Folder Include="Views\LlojiArkitektura\" />
+    <Folder Include="Views\Projekti\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -7,57 +7,64 @@ using System.Data;
 using System.Data.SqlClient;
 using ArchidesArchitectureWeb.Models;
 
-
 namespace ArchidesArchitectureWeb.Controllers
 {
-    public class RoliController : Controller
+    public class LlojiArkitekturaController : Controller
     {
-        public static DataTable ShfaqRol()
+        public static DataTable ShfaqLlojinArkitektures()
         {
             DataTable dataTable = new DataTable();
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
                 conn.Open();
-                SqlDataAdapter sda = new SqlDataAdapter("usp_tblRoli_Select", conn);
+                SqlDataAdapter sda = new SqlDataAdapter("usp_tblLlojiArkitektura_Select", conn);
                 sda.Fill(dataTable);
             }
             return dataTable;
         }
-        // GET: Roli
-        [HttpGet]
+        // GET: LlojiArkitektura
         public ActionResult Index()
         {
-            return View(ShfaqRol());
+            return View();
         }
 
-        public static void ShtoRol(Roli roli)
+        // GET: LlojiArkitektura/Details/5
+        public ActionResult Details(int id)
         {
+            return View();
+        }
+
+        public static bool ShtoLlojArkitekture(LlojiArkitektura llojiArkitektura)
+        {
+            bool uRegjistrua = false;
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("usp_tblRoli_Insert", conn);
+                SqlCommand cmd = new SqlCommand("usp_tblLlojiArkitektura_Insert", conn);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@prmRoli", roli.LlojiIRolit);
+                cmd.Parameters.AddWithValue("@prmLlojiArkitektura", llojiArkitektura.LlojiIArkitektures);
                 conn.Open();
 
                 cmd.ExecuteNonQuery();
+                uRegjistrua = true;
             }
-        }
-        // GET: Roli/Create
-        [HttpGet]
-        public ActionResult Create()
-        {
-            return View(new Roli());
+            return uRegjistrua;
         }
 
-        // POST: Roli/Create
+        // GET: LlojiArkitektura/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: LlojiArkitektura/Create
         [HttpPost]
-        public ActionResult Create(Models.Roli roli)
+        public ActionResult Create(FormCollection collection)
         {
             try
             {
                 // TODO: Add insert logic here
-                ShtoRol(roli);
+
                 return RedirectToAction("Index");
             }
             catch
@@ -67,59 +74,36 @@ namespace ArchidesArchitectureWeb.Controllers
         }
 
 
-        public static Roli MerrRol(int id)
+        public static bool UpdateLlojArkitekture(LlojiArkitektura llojiArkitektura)
         {
-            Roli roli = new Roli();
-            DataTable dataTable = new DataTable();
+            bool uUpdate = false;
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
-                conn.Open();
-                SqlDataAdapter sda = new SqlDataAdapter("usp_tblRoli_SelectById", conn);
-                sda.SelectCommand.Parameters.AddWithValue("@prmRoliID", id);
-                sda.Fill(dataTable);
-            }
-            if (dataTable.Rows.Count == 1)
-            {
-                roli.RoliID = int.Parse(dataTable.Rows[0][0].ToString());
-                roli.LlojiIRolit = dataTable.Rows[0][1].ToString();
-                return roli;
-            }
-            return null;
-        }
-        public static void UpdateRol(Roli roli)
-        {
-            using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
-            {
-                SqlCommand cmd = new SqlCommand("usp_tblRoli_Update", conn);
+                SqlCommand cmd = new SqlCommand("usp_tblLlojiArkitektura_Update", conn);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@prmRoliID", roli.RoliID);
-                cmd.Parameters.AddWithValue("@prmRoli", roli.LlojiIRolit);
+
+                cmd.Parameters.AddWithValue("@prmLlojiArkitektura", llojiArkitektura.LlojiIArkitektures);
                 conn.Open();
+
                 cmd.ExecuteNonQuery();
+                uUpdate = true;
             }
+            return uUpdate;
         }
-        // GET: Roli/Edit/5
+        // GET: LlojiArkitektura/Edit/5
         public ActionResult Edit(int id)
         {
-            if (MerrRol(id)!=null)
-            {
-                return View(MerrRol(id));
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
-            
+            return View();
         }
 
-        // POST: Roli/Edit/5
+        // POST: LlojiArkitektura/Edit/5
         [HttpPost]
-        public ActionResult Edit(Models.Roli roli)
+        public ActionResult Edit(int id, FormCollection collection)
         {
             try
             {
                 // TODO: Add update logic here
-                UpdateRol(roli);
+
                 return RedirectToAction("Index");
             }
             catch
@@ -129,24 +113,30 @@ namespace ArchidesArchitectureWeb.Controllers
         }
 
 
-        public static void FshijRol(Roli roli)
+        public static bool FshijLlojArkitekture(LlojiArkitektura llojiArkitektura)
         {
+            bool uFshij = false;
             using (SqlConnection conn = new SqlConnection(Connection.ConnectionString))
             {
-                SqlCommand cmd = new SqlCommand("usp_tblRoli_Fshij", conn);
+                SqlCommand cmd = new SqlCommand("usp_tblLlojiArkitektura_Update", conn);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@prmLlojiIRolit", roli.LlojiIRolit);
+
+                cmd.Parameters.AddWithValue("@prmLlojiArkitektura", llojiArkitektura.LlojiIArkitektures);
                 conn.Open();
+
                 cmd.ExecuteNonQuery();
+                uFshij = true;
             }
+            return uFshij;
         }
-        // GET: Roli/Delete/5
+
+        // GET: LlojiArkitektura/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Roli/Delete/5
+        // POST: LlojiArkitektura/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
