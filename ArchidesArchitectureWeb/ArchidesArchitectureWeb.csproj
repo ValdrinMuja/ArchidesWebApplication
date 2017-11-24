@@ -44,6 +44,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -77,6 +83,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -118,6 +126,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ArchidesModelAdo.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ArchidesModelAdo.Context.cs</LastGenOutput>
+      <DependentUpon>ArchidesModelAdo.edmx</DependentUpon>
+    </Content>
+    <Content Include="ArchidesModelAdo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ArchidesModelAdo.edmx</DependentUpon>
+      <LastGenOutput>ArchidesModelAdo.cs</LastGenOutput>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -127,6 +145,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <EntityDeploy Include="ArchidesModelAdo.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ArchidesModelAdo.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="ArchidesModelAdo.edmx.diagram">
+      <DependentUpon>ArchidesModelAdo.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="ImagesSlideShow\img1.jpg" />
     <Content Include="ImagesSlideShow\img2.jpg" />
@@ -146,32 +171,65 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ArchidesModelAdo.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArchidesModelAdo.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ArchidesModelAdo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArchidesModelAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ArchidesModelAdo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArchidesModelAdo.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\KategoriaController.cs" />
-    <Compile Include="Controllers\LajmiController.cs" />
-    <Compile Include="Controllers\LlojiArkitekturaController.cs" />
-    <Compile Include="Controllers\ProjektiController.cs" />
-    <Compile Include="Controllers\RoliController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="DataAcc\AccMedia.cs" />
-    <Compile Include="DataAcc\AccMediaType.cs" />
-    <Compile Include="DataAcc\AccProjektiMedia.cs" />
-    <Compile Include="DataAcc\AccProjektiUser.cs" />
-    <Compile Include="DataAcc\Connection.cs" />
+    <Compile Include="Controllers\KategoriasController.cs" />
+    <Compile Include="Controllers\LajmisController.cs" />
+    <Compile Include="Controllers\LlojiArkitekturasController.cs" />
+    <Compile Include="Controllers\MediaController.cs" />
+    <Compile Include="Controllers\MediaTypesController.cs" />
+    <Compile Include="Controllers\ProjektisController.cs" />
+    <Compile Include="Controllers\ProjektiUsersController.cs" />
+    <Compile Include="Controllers\RolisController.cs" />
+    <Compile Include="Controllers\UserisController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Kategoria.cs" />
-    <Compile Include="Models\Lajmi.cs" />
-    <Compile Include="Models\LlojiArkitektura.cs" />
-    <Compile Include="Models\Media.cs" />
-    <Compile Include="Models\MediaType.cs" />
-    <Compile Include="Models\Projekti.cs" />
-    <Compile Include="Models\ProjektiMedia.cs" />
-    <Compile Include="Models\ProjektiUser.cs" />
-    <Compile Include="Models\Roli.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Kategoria.cs">
+      <DependentUpon>ArchidesModelAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Lajmi.cs">
+      <DependentUpon>ArchidesModelAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LlojiArkitektura.cs">
+      <DependentUpon>ArchidesModelAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MediaType.cs">
+      <DependentUpon>ArchidesModelAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Medium.cs">
+      <DependentUpon>ArchidesModelAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Projekti.cs">
+      <DependentUpon>ArchidesModelAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjektiMedia.cs">
+      <DependentUpon>ArchidesModelAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjektiUser.cs">
+      <DependentUpon>ArchidesModelAdo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Roli.cs">
+      <DependentUpon>ArchidesModelAdo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Useri.cs">
+      <DependentUpon>ArchidesModelAdo.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -179,15 +237,59 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_ViewStart.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Roli\Create.cshtml" />
-    <Content Include="Views\Roli\Index.cshtml" />
-    <Content Include="Views\Roli\Edit.cshtml" />
+    <Content Include="Views\Shared\MasterPageAdmin.cshtml" />
+    <Content Include="Views\Kategorias\Create.cshtml" />
+    <Content Include="Views\Kategorias\Delete.cshtml" />
+    <Content Include="Views\Kategorias\Details.cshtml" />
+    <Content Include="Views\Kategorias\Edit.cshtml" />
+    <Content Include="Views\Kategorias\Index.cshtml" />
+    <Content Include="Views\Rolis\Create.cshtml" />
+    <Content Include="Views\Rolis\Delete.cshtml" />
+    <Content Include="Views\Rolis\Details.cshtml" />
+    <Content Include="Views\Rolis\Edit.cshtml" />
+    <Content Include="Views\Rolis\Index.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Useris\Create.cshtml" />
+    <Content Include="Views\Useris\Delete.cshtml" />
+    <Content Include="Views\Useris\Details.cshtml" />
+    <Content Include="Views\Useris\Edit.cshtml" />
+    <Content Include="Views\Useris\Index.cshtml" />
+    <Content Include="Views\Projektis\Create.cshtml" />
+    <Content Include="Views\Projektis\Delete.cshtml" />
+    <Content Include="Views\Projektis\Details.cshtml" />
+    <Content Include="Views\Projektis\Edit.cshtml" />
+    <Content Include="Views\Projektis\Index.cshtml" />
+    <Content Include="Views\Lajmis\Create.cshtml" />
+    <Content Include="Views\Lajmis\Delete.cshtml" />
+    <Content Include="Views\Lajmis\Details.cshtml" />
+    <Content Include="Views\Lajmis\Edit.cshtml" />
+    <Content Include="Views\Lajmis\Index.cshtml" />
+    <Content Include="Views\LlojiArkitekturas\Create.cshtml" />
+    <Content Include="Views\LlojiArkitekturas\Delete.cshtml" />
+    <Content Include="Views\LlojiArkitekturas\Details.cshtml" />
+    <Content Include="Views\LlojiArkitekturas\Edit.cshtml" />
+    <Content Include="Views\LlojiArkitekturas\Index.cshtml" />
+    <Content Include="Views\ProjektiUsers\Create.cshtml" />
+    <Content Include="Views\ProjektiUsers\Delete.cshtml" />
+    <Content Include="Views\ProjektiUsers\Details.cshtml" />
+    <Content Include="Views\ProjektiUsers\Edit.cshtml" />
+    <Content Include="Views\ProjektiUsers\Index.cshtml" />
+    <Content Include="Views\Media\Create.cshtml" />
+    <Content Include="Views\Media\Delete.cshtml" />
+    <Content Include="Views\Media\Details.cshtml" />
+    <Content Include="Views\Media\Edit.cshtml" />
+    <Content Include="Views\Media\Index.cshtml" />
+    <Content Include="Views\MediaTypes\Create.cshtml" />
+    <Content Include="Views\MediaTypes\Delete.cshtml" />
+    <Content Include="Views\MediaTypes\Details.cshtml" />
+    <Content Include="Views\MediaTypes\Edit.cshtml" />
+    <Content Include="Views\MediaTypes\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Shared\MasterPageAdmin.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -197,11 +299,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Kategoria\" />
-    <Folder Include="Views\Lajmi\" />
-    <Folder Include="Views\LlojiArkitektura\" />
-    <Folder Include="Views\Projekti\" />
-    <Folder Include="Views\User\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ArchidesArchitectureWeb.LlojiArkitektura>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LlojiArkitektura1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activ)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LlojiArkitektura1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activ)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.LlojiArkitekturaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.LlojiArkitekturaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.LlojiArkitekturaID })
+        </td>
+    </tr>
+}
+
+</table>

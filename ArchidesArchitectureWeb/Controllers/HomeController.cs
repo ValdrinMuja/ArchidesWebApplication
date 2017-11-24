@@ -27,7 +27,5 @@ namespace ArchidesArchitectureWeb.Controllers
 
             return View();
         }
-
-
     }
 }

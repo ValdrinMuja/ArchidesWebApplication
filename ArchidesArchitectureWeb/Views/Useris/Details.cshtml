@@ -1,0 +1,138 @@
+﻿@model ArchidesArchitectureWeb.Useri
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Useri</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Emri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Emri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mbiemri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mbiemri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gjinia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gjinia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vendlindja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vendlindja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Datelindja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Datelindja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefoni)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefoni)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pershkrimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pershkrimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Shkollimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Shkollimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PergaditjaProfesionale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PergaditjaProfesionale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Foto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Foto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Roli.Roli1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Roli.Roli1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

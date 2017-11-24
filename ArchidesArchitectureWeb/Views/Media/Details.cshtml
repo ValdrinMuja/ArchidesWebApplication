@@ -1,0 +1,50 @@
+﻿@model ArchidesArchitectureWeb.Medium
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Medium</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MediaPath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MediaPath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LlojiArkitektura.LlojiArkitektura1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LlojiArkitektura.LlojiArkitektura1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MediaType.MediaType1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MediaType.MediaType1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MediaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

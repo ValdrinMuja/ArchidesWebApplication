@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ArchidesArchitectureWeb.Lajmi>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FotoPath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UploadTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulli)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pershkrimi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Activ)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FotoPath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UploadTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulli)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pershkrimi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activ)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.LajmiID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.LajmiID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.LajmiID })
+        </td>
+    </tr>
+}
+
+</table>

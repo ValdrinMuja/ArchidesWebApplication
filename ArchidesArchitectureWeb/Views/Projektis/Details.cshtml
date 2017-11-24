@@ -1,0 +1,98 @@
+﻿@model ArchidesArchitectureWeb.Projekti
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Projekti</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulli)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulli)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lokacioni)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lokacioni)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Viti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Viti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Madhesia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Madhesia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Statusi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Statusi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pershkrimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pershkrimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UploadTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UploadTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategoria.Kategoria1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategoria.Kategoria1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Useri.Emri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Useri.Emri)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProjektiID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
