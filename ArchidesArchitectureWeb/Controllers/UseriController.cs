@@ -10,118 +10,112 @@ using ArchidesArchitectureWeb;
 
 namespace ArchidesArchitectureWeb.Controllers
 {
-    public class MediaController : Controller
+    public class UseriController : Controller
     {
         private DBArchidesArchitetureEntities db = new DBArchidesArchitetureEntities();
 
-        // GET: Media
+        // GET: Useri
         public ActionResult Index()
         {
-            var media = db.Media.Include(m => m.LlojiArkitektura).Include(m => m.MediaType);
-            return View(media.ToList());
+            var useris = db.Useris.Include(u => u.Roli);
+            return View(useris.ToList());
         }
 
-        // GET: Media/Details/5
+        // GET: Useri/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Medium medium = db.Media.Find(id);
-            if (medium == null)
+            Useri useri = db.Useris.Find(id);
+            if (useri == null)
             {
                 return HttpNotFound();
             }
-            return View(medium);
+            return View(useri);
         }
 
-        // GET: Media/Create
+        // GET: Useri/Create
         public ActionResult Create()
         {
-            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura1");
-            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType1");
+            ViewBag.RoliID = new SelectList(db.Rolis, "RoliID", "Roli1");
             return View();
         }
 
-        // POST: Media/Create
+        // POST: Useri/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MediaID,MediaTypeID,LlojiArkitekturaID,MediaPath,Activ")] Medium medium)
+        public ActionResult Create([Bind(Include = "UserID,Emri,Mbiemri,Gjinia,Vendlindja,Datelindja,Email,Telefoni,Username,Password,Pershkrimi,Shkollimi,PergaditjaProfesionale,Foto,RoliID,Activ")] Useri useri)
         {
             if (ModelState.IsValid)
             {
-                db.Media.Add(medium);
+                db.Useris.Add(useri);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura1", medium.LlojiArkitekturaID);
-            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType1", medium.MediaTypeID);
-            return View(medium);
+            ViewBag.RoliID = new SelectList(db.Rolis, "RoliID", "Roli1", useri.RoliID);
+            return View(useri);
         }
 
-        // GET: Media/Edit/5
+        // GET: Useri/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Medium medium = db.Media.Find(id);
-            if (medium == null)
+            Useri useri = db.Useris.Find(id);
+            if (useri == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura1", medium.LlojiArkitekturaID);
-            
-            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType1", medium.MediaTypeID);
-            return View(medium);
+            ViewBag.RoliID = new SelectList(db.Rolis, "RoliID", "Roli1", useri.RoliID);
+            return View(useri);
         }
 
-        // POST: Media/Edit/5
+        // POST: Useri/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MediaID,MediaTypeID,LlojiArkitekturaID,MediaPath,Activ")] Medium medium)
+        public ActionResult Edit([Bind(Include = "UserID,Emri,Mbiemri,Gjinia,Vendlindja,Datelindja,Email,Telefoni,Username,Password,Pershkrimi,Shkollimi,PergaditjaProfesionale,Foto,RoliID,Activ")] Useri useri)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(medium).State = EntityState.Modified;
+                db.Entry(useri).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura1", medium.LlojiArkitekturaID);
-           
-            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType1", medium.MediaTypeID);
-            return View(medium);
+            ViewBag.RoliID = new SelectList(db.Rolis, "RoliID", "Roli1", useri.RoliID);
+            return View(useri);
         }
 
-        // GET: Media/Delete/5
+        // GET: Useri/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Medium medium = db.Media.Find(id);
-            if (medium == null)
+            Useri useri = db.Useris.Find(id);
+            if (useri == null)
             {
                 return HttpNotFound();
             }
-            return View(medium);
+            return View(useri);
         }
 
-        // POST: Media/Delete/5
+        // POST: Useri/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Medium medium = db.Media.Find(id);
-            db.Media.Remove(medium);
+            Useri useri = db.Useris.Find(id);
+            db.Useris.Remove(useri);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

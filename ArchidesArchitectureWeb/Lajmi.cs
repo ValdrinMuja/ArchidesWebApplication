@@ -20,5 +20,7 @@ namespace ArchidesArchitectureWeb
         public string Titulli { get; set; }
         public string Pershkrimi { get; set; }
         public Nullable<bool> Activ { get; set; }
+        public Nullable<int> UserID { get; set; }
+        public virtual Useri Useri { get; set; }
     }
 }

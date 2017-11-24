@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="6543a06dfdd546db9edf011093837326" Name="Diagram1">
         <EntityTypeShape EntityType="DBArchidesArchitetureModel.Kategoria" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBArchidesArchitetureModel.Lajmi" Width="1.5" PointX="5.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBArchidesArchitetureModel.Lajmi" Width="1.5" PointX="6.625" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBArchidesArchitetureModel.LlojiArkitektura" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DBArchidesArchitetureModel.Medium" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DBArchidesArchitetureModel.MediaType" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
@@ -24,6 +24,7 @@
         <AssociationConnector Association="DBArchidesArchitetureModel.FK__ProjektiU__Proje__4222D4EF" ManuallyRouted="false" />
         <AssociationConnector Association="DBArchidesArchitetureModel.FK__ProjektiU__UserI__4316F928" ManuallyRouted="false" />
         <AssociationConnector Association="DBArchidesArchitetureModel.FK__Useri__RoliID__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="DBArchidesArchitetureModel.FK__Lajmi__UserID__4BAC3F29" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

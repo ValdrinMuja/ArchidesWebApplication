@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DBArchidesArchitetureModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DBArchidesArchitetureModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Kategoria">
           <Key>
             <PropertyRef Name="KategoriaID" />
@@ -22,6 +22,7 @@
           <Property Name="UploadTime" Type="datetime" />
           <Property Name="Titulli" Type="varchar" MaxLength="200" />
           <Property Name="Pershkrimi" Type="varchar(max)" />
+          <Property Name="UserID" Type="int" />
           <Property Name="Activ" Type="bit" />
         </EntityType>
         <EntityType Name="LlojiArkitektura">
@@ -113,6 +114,18 @@
           <Property Name="RoliID" Type="int" />
           <Property Name="Activ" Type="bit" />
         </EntityType>
+        <Association Name="FK__Lajmi__UserID__4BAC3F29">
+          <End Role="Useri" Type="Self.Useri" Multiplicity="0..1" />
+          <End Role="Lajmi" Type="Self.Lajmi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Useri">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Lajmi">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Media__LlojiArki__33D4B598">
           <End Role="LlojiArkitektura" Type="Self.LlojiArkitektura" Multiplicity="0..1" />
           <End Role="Media" Type="Self.Media" Multiplicity="*" />
@@ -232,6 +245,10 @@
           <EntitySet Name="ProjektiUser" EntityType="Self.ProjektiUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roli" EntityType="Self.Roli" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Useri" EntityType="Self.Useri" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Lajmi__UserID__4BAC3F29" Association="Self.FK__Lajmi__UserID__4BAC3F29">
+            <End Role="Useri" EntitySet="Useri" />
+            <End Role="Lajmi" EntitySet="Lajmi" />
+          </AssociationSet>
           <AssociationSet Name="FK__Media__LlojiArki__33D4B598" Association="Self.FK__Media__LlojiArki__33D4B598">
             <End Role="LlojiArkitektura" EntitySet="LlojiArkitektura" />
             <End Role="Media" EntitySet="Media" />
@@ -269,8 +286,7 @@
             <End Role="Useri" EntitySet="Useri" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBArchidesArchitetureModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -293,6 +309,8 @@
           <Property Name="Titulli" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Pershkrimi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Activ" Type="Boolean" />
+          <Property Name="UserID" Type="Int32" />
+          <NavigationProperty Name="Useri" Relationship="DBArchidesArchitetureModel.FK__Lajmi__UserID__4BAC3F29" FromRole="Lajmi" ToRole="Useri" />
         </EntityType>
         <EntityType Name="LlojiArkitektura">
           <Key>
@@ -399,6 +417,7 @@
           <NavigationProperty Name="Projektis" Relationship="Self.FK__Projekti__UserID__398D8EEE" FromRole="Useri" ToRole="Projekti" />
           <NavigationProperty Name="ProjektiUsers" Relationship="Self.FK__ProjektiU__UserI__4316F928" FromRole="Useri" ToRole="ProjektiUser" />
           <NavigationProperty Name="Roli" Relationship="Self.FK__Useri__RoliID__2F10007B" FromRole="Useri" ToRole="Roli" />
+          <NavigationProperty Name="Lajmis" Relationship="DBArchidesArchitetureModel.FK__Lajmi__UserID__4BAC3F29" FromRole="Useri" ToRole="Lajmi" />
         </EntityType>
         <Association Name="FK__Projekti__Katego__37A5467C">
           <End Role="Kategoria" Type="Self.Kategoria" Multiplicity="0..1" />
@@ -555,7 +574,23 @@
             <End Role="Roli" EntitySet="Rolis" />
             <End Role="Useri" EntitySet="Useris" />
           </AssociationSet>
+          <AssociationSet Name="FK__Lajmi__UserID__4BAC3F29" Association="DBArchidesArchitetureModel.FK__Lajmi__UserID__4BAC3F29">
+            <End Role="Useri" EntitySet="Useris" />
+            <End Role="Lajmi" EntitySet="Lajmis" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK__Lajmi__UserID__4BAC3F29">
+          <End Type="DBArchidesArchitetureModel.Useri" Role="Useri" Multiplicity="0..1" />
+          <End Type="DBArchidesArchitetureModel.Lajmi" Role="Lajmi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Useri">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Lajmi">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -574,6 +609,7 @@
           <EntitySetMapping Name="Lajmis">
             <EntityTypeMapping TypeName="DBArchidesArchitetureModel.Lajmi">
               <MappingFragment StoreEntitySet="Lajmi">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="LajmiID" ColumnName="LajmiID" />
                 <ScalarProperty Name="FotoPath" ColumnName="FotoPath" />
                 <ScalarProperty Name="UploadTime" ColumnName="UploadTime" />

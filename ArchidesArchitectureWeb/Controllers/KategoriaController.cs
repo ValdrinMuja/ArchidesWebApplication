@@ -10,118 +10,107 @@ using ArchidesArchitectureWeb;
 
 namespace ArchidesArchitectureWeb.Controllers
 {
-    public class MediaController : Controller
+    public class KategoriaController : Controller
     {
         private DBArchidesArchitetureEntities db = new DBArchidesArchitetureEntities();
 
-        // GET: Media
+        // GET: Kategoria
         public ActionResult Index()
         {
-            var media = db.Media.Include(m => m.LlojiArkitektura).Include(m => m.MediaType);
-            return View(media.ToList());
+            return View(db.Kategorias.ToList());
         }
 
-        // GET: Media/Details/5
+        // GET: Kategoria/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Medium medium = db.Media.Find(id);
-            if (medium == null)
+            Kategoria kategoria = db.Kategorias.Find(id);
+            if (kategoria == null)
             {
                 return HttpNotFound();
             }
-            return View(medium);
+            return View(kategoria);
         }
 
-        // GET: Media/Create
+        // GET: Kategoria/Create
         public ActionResult Create()
         {
-            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura1");
-            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType1");
             return View();
         }
 
-        // POST: Media/Create
+        // POST: Kategoria/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MediaID,MediaTypeID,LlojiArkitekturaID,MediaPath,Activ")] Medium medium)
+        public ActionResult Create([Bind(Include = "KategoriaID,Kategoria1,Activ")] Kategoria kategoria)
         {
             if (ModelState.IsValid)
             {
-                db.Media.Add(medium);
+                db.Kategorias.Add(kategoria);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura1", medium.LlojiArkitekturaID);
-            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType1", medium.MediaTypeID);
-            return View(medium);
+            return View(kategoria);
         }
 
-        // GET: Media/Edit/5
+        // GET: Kategoria/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Medium medium = db.Media.Find(id);
-            if (medium == null)
+            Kategoria kategoria = db.Kategorias.Find(id);
+            if (kategoria == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura1", medium.LlojiArkitekturaID);
-            
-            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType1", medium.MediaTypeID);
-            return View(medium);
+            return View(kategoria);
         }
 
-        // POST: Media/Edit/5
+        // POST: Kategoria/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MediaID,MediaTypeID,LlojiArkitekturaID,MediaPath,Activ")] Medium medium)
+        public ActionResult Edit([Bind(Include = "KategoriaID,Kategoria1,Activ")] Kategoria kategoria)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(medium).State = EntityState.Modified;
+                db.Entry(kategoria).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura1", medium.LlojiArkitekturaID);
-           
-            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType1", medium.MediaTypeID);
-            return View(medium);
+            return View(kategoria);
         }
 
-        // GET: Media/Delete/5
+        // GET: Kategoria/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Medium medium = db.Media.Find(id);
-            if (medium == null)
+            Kategoria kategoria = db.Kategorias.Find(id);
+            if (kategoria == null)
             {
                 return HttpNotFound();
             }
-            return View(medium);
+            return View(kategoria);
         }
 
-        // POST: Media/Delete/5
+        // POST: Kategoria/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Medium medium = db.Media.Find(id);
-            db.Media.Remove(medium);
+            Kategoria kategoria = db.Kategorias.Find(id);
+            db.Kategorias.Remove(kategoria);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

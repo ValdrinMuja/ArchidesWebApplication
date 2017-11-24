@@ -10,118 +10,112 @@ using ArchidesArchitectureWeb;
 
 namespace ArchidesArchitectureWeb.Controllers
 {
-    public class MediaController : Controller
+    public class LajmiController : Controller
     {
         private DBArchidesArchitetureEntities db = new DBArchidesArchitetureEntities();
 
-        // GET: Media
+        // GET: Lajmi
         public ActionResult Index()
         {
-            var media = db.Media.Include(m => m.LlojiArkitektura).Include(m => m.MediaType);
-            return View(media.ToList());
+            var lajmi = db.Lajmis.Include(l => l.Useri);
+            return View(db.Lajmis.ToList());
         }
 
-        // GET: Media/Details/5
+        // GET: Lajmi/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Medium medium = db.Media.Find(id);
-            if (medium == null)
+            Lajmi lajmi = db.Lajmis.Find(id);
+            if (lajmi == null)
             {
                 return HttpNotFound();
             }
-            return View(medium);
+            return View(lajmi);
         }
 
-        // GET: Media/Create
+        // GET: Lajmi/Create
         public ActionResult Create()
         {
-            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura1");
-            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType1");
+            ViewBag.UserID = new SelectList(db.Useris, "UserID", "Emri");
             return View();
         }
 
-        // POST: Media/Create
+        // POST: Lajmi/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MediaID,MediaTypeID,LlojiArkitekturaID,MediaPath,Activ")] Medium medium)
+        public ActionResult Create([Bind(Include = "LajmiID,FotoPath,UploadTime,Titulli,Pershkrimi,UserID,Activ")] Lajmi lajmi)
         {
             if (ModelState.IsValid)
             {
-                db.Media.Add(medium);
+                lajmi.UploadTime = DateTime.Now;
+                db.Lajmis.Add(lajmi);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura1", medium.LlojiArkitekturaID);
-            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType1", medium.MediaTypeID);
-            return View(medium);
+            return View(lajmi);
         }
 
-        // GET: Media/Edit/5
+        // GET: Lajmi/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Medium medium = db.Media.Find(id);
-            if (medium == null)
+            Lajmi lajmi = db.Lajmis.Find(id);
+            if (lajmi == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura1", medium.LlojiArkitekturaID);
-            
-            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType1", medium.MediaTypeID);
-            return View(medium);
+            ViewBag.UserID = new SelectList(db.Useris, "UserID", "Emri", lajmi.UserID);
+            return View(lajmi);
         }
 
-        // POST: Media/Edit/5
+        // POST: Lajmi/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MediaID,MediaTypeID,LlojiArkitekturaID,MediaPath,Activ")] Medium medium)
+        public ActionResult Edit([Bind(Include = "LajmiID,FotoPath,UploadTime,Titulli,Pershkrimi,Activ")] Lajmi lajmi)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(medium).State = EntityState.Modified;
+                db.Entry(lajmi).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura1", medium.LlojiArkitekturaID);
-           
-            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType1", medium.MediaTypeID);
-            return View(medium);
+            ViewBag.UserID = new SelectList(db.Useris, "UserID", "Emri", lajmi.UserID);
+            return View(lajmi);
         }
 
-        // GET: Media/Delete/5
+        // GET: Lajmi/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Medium medium = db.Media.Find(id);
-            if (medium == null)
+            Lajmi lajmi = db.Lajmis.Find(id);
+            if (lajmi == null)
             {
                 return HttpNotFound();
             }
-            return View(medium);
+            return View(lajmi);
         }
 
-        // POST: Media/Delete/5
+        // POST: Lajmi/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Medium medium = db.Media.Find(id);
-            db.Media.Remove(medium);
+            Lajmi lajmi = db.Lajmis.Find(id);
+            db.Lajmis.Remove(lajmi);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

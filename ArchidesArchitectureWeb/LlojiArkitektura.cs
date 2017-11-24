@@ -21,6 +21,7 @@ namespace ArchidesArchitectureWeb
         }
     
         public int LlojiArkitekturaID { get; set; }
+
         public string LlojiArkitektura1 { get; set; }
         public Nullable<bool> Activ { get; set; }
     

@@ -1,0 +1,65 @@
+﻿@model ArchidesArchitectureWeb.Lajmi
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Lajmi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FotoPath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FotoPath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UploadTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UploadTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulli)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulli)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pershkrimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pershkrimi)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Useri.Emri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Useri.Emri)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activ)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LajmiID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -18,7 +18,6 @@ namespace ArchidesArchitectureWeb
         public Nullable<int> ProjektiID { get; set; }
         public Nullable<int> UserID { get; set; }
         public Nullable<bool> Activ { get; set; }
-    
         public virtual Projekti Projekti { get; set; }
         public virtual Useri Useri { get; set; }
     }

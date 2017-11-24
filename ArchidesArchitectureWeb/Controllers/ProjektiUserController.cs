@@ -10,118 +10,116 @@ using ArchidesArchitectureWeb;
 
 namespace ArchidesArchitectureWeb.Controllers
 {
-    public class MediaController : Controller
+    public class ProjektiUserController : Controller
     {
         private DBArchidesArchitetureEntities db = new DBArchidesArchitetureEntities();
 
-        // GET: Media
+        // GET: ProjektiUser
         public ActionResult Index()
         {
-            var media = db.Media.Include(m => m.LlojiArkitektura).Include(m => m.MediaType);
-            return View(media.ToList());
+            var projektiUsers = db.ProjektiUsers.Include(p => p.Projekti).Include(p => p.Useri);
+            return View(projektiUsers.ToList());
         }
 
-        // GET: Media/Details/5
+        // GET: ProjektiUser/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Medium medium = db.Media.Find(id);
-            if (medium == null)
+            ProjektiUser projektiUser = db.ProjektiUsers.Find(id);
+            if (projektiUser == null)
             {
                 return HttpNotFound();
             }
-            return View(medium);
+            return View(projektiUser);
         }
 
-        // GET: Media/Create
+        // GET: ProjektiUser/Create
         public ActionResult Create()
         {
-            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura1");
-            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType1");
+            ViewBag.ProjektiID = new SelectList(db.Projektis, "ProjektiID", "Titulli");
+            ViewBag.UserID = new SelectList(db.Useris, "UserID", "Emri");
             return View();
         }
 
-        // POST: Media/Create
+        // POST: ProjektiUser/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MediaID,MediaTypeID,LlojiArkitekturaID,MediaPath,Activ")] Medium medium)
+        public ActionResult Create([Bind(Include = "ProjektiUserID,ProjektiID,UserID,Activ")] ProjektiUser projektiUser)
         {
             if (ModelState.IsValid)
             {
-                db.Media.Add(medium);
+                db.ProjektiUsers.Add(projektiUser);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura1", medium.LlojiArkitekturaID);
-            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType1", medium.MediaTypeID);
-            return View(medium);
+            ViewBag.ProjektiID = new SelectList(db.Projektis, "ProjektiID", "Titulli", projektiUser.ProjektiID);
+            ViewBag.UserID = new SelectList(db.Useris, "UserID", "Emri", projektiUser.UserID);
+            return View(projektiUser);
         }
 
-        // GET: Media/Edit/5
+        // GET: ProjektiUser/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Medium medium = db.Media.Find(id);
-            if (medium == null)
+            ProjektiUser projektiUser = db.ProjektiUsers.Find(id);
+            if (projektiUser == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura1", medium.LlojiArkitekturaID);
-            
-            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType1", medium.MediaTypeID);
-            return View(medium);
+            ViewBag.ProjektiID = new SelectList(db.Projektis, "ProjektiID", "Titulli", projektiUser.ProjektiID);
+            ViewBag.UserID = new SelectList(db.Useris, "UserID", "Emri", projektiUser.UserID);
+            return View(projektiUser);
         }
 
-        // POST: Media/Edit/5
+        // POST: ProjektiUser/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MediaID,MediaTypeID,LlojiArkitekturaID,MediaPath,Activ")] Medium medium)
+        public ActionResult Edit([Bind(Include = "ProjektiUserID,ProjektiID,UserID,Activ")] ProjektiUser projektiUser)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(medium).State = EntityState.Modified;
+                db.Entry(projektiUser).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura1", medium.LlojiArkitekturaID);
-           
-            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType1", medium.MediaTypeID);
-            return View(medium);
+            ViewBag.ProjektiID = new SelectList(db.Projektis, "ProjektiID", "Titulli", projektiUser.ProjektiID);
+            ViewBag.UserID = new SelectList(db.Useris, "UserID", "Emri", projektiUser.UserID);
+            return View(projektiUser);
         }
 
-        // GET: Media/Delete/5
+        // GET: ProjektiUser/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Medium medium = db.Media.Find(id);
-            if (medium == null)
+            ProjektiUser projektiUser = db.ProjektiUsers.Find(id);
+            if (projektiUser == null)
             {
                 return HttpNotFound();
             }
-            return View(medium);
+            return View(projektiUser);
         }
 
-        // POST: Media/Delete/5
+        // POST: ProjektiUser/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Medium medium = db.Media.Find(id);
-            db.Media.Remove(medium);
+            ProjektiUser projektiUser = db.ProjektiUsers.Find(id);
+            db.ProjektiUsers.Remove(projektiUser);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
