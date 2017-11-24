@@ -50,6 +50,7 @@ namespace ArchidesArchitectureWeb
         [Required(ErrorMessage = "Foto is required ")]
         public string Foto { get; set; }
         [DisplayName("Roli i Userit")]
+        
         public Nullable<int> RoliID { get; set; }
         public Nullable<bool> Activ { get; set; }
     
