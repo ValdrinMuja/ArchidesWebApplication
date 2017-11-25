@@ -11,7 +11,9 @@ namespace ArchidesArchitectureWeb
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Kategoria
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +23,7 @@ namespace ArchidesArchitectureWeb
         }
     
         public int KategoriaID { get; set; }
+       [DisplayName("Kategoria")]
         public string Kategoria1 { get; set; }
         public Nullable<bool> Activ { get; set; }
     

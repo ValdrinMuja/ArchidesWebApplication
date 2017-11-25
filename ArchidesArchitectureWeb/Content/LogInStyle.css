@@ -1,0 +1,60 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../LogInIcons/backgroundlogin.jpg');
+    font-family: sans-serif;
+}
+
+.loginBox {
+    position: absolute;
+    width: 350px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: translate(-20%,-20&);
+    height: 450px;
+    min-height: 200px;
+    background: rgba(125, 125,125, 0.6);
+    border-radius: 10px;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.user{
+    margin: 0 auto;
+    display:block;
+    margin-bottom:20px;
+}
+
+h3 {
+    margin: 0;
+    padding: 0 0 20px;
+    color: white;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: medium;
+}
+
+.btnLogin {
+    border: none;
+    outline: none;
+    height: 40px;
+    width: 250px;
+    font-size: 16px;
+    background:#3B5998;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.loginBox input
+{
+    width:100%;
+    margin-bottom:20px;
+}
+
+
+

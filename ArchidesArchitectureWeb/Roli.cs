@@ -22,6 +22,7 @@ namespace ArchidesArchitectureWeb
         }
     
         public int RoliID { get; set; }
+        [DisplayName("Roli i Userit")]
         public string Roli1 { get; set; }
         public Nullable<bool> Activ { get; set; }
     

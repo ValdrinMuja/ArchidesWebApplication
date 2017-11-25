@@ -11,7 +11,8 @@ namespace ArchidesArchitectureWeb
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Projekti
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -30,6 +31,7 @@ namespace ArchidesArchitectureWeb
         public string Statusi { get; set; }
         public string Pershkrimi { get; set; }
         public Nullable<System.DateTime> UploadTime { get; set; }
+        [DisplayName("Admin")]
         public Nullable<int> UserID { get; set; }
         public Nullable<bool> Activ { get; set; }
     

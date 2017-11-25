@@ -11,7 +11,8 @@ namespace ArchidesArchitectureWeb
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class MediaType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,7 @@ namespace ArchidesArchitectureWeb
         }
     
         public int MediaTypeID { get; set; }
+        [DisplayName("Media Type")]
         public string MediaType1 { get; set; }
         public Nullable<bool> Activ { get; set; }
     

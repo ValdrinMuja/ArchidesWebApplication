@@ -1,0 +1,47 @@
+﻿@model ArchidesArchitectureWeb.Useri
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login Form</title>
+    <link href="~/Content/LogInStyle.css" rel="stylesheet" />
+    <style>
+        .field-validation-error {
+            color:#FF0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="loginBox">
+        <img class="user" src="~/LogInIcons/user.png"/>
+        <h3>Log In Here</h3>
+        @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+        {
+            <form>
+                <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
+                @Html.ValidationMessageFor(model => model.Username)
+                <div class"inputBox">
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new {  placeholder = "Username" }})
+                </div>
+            
+                @Html.ValidationMessageFor(model => model.Password)
+                <div class"inputBox">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { placeholder = "Password" } })
+                </div>
+                
+                <div>
+                  <input class="btnLogin" type="submit" name="name" value="Login" />
+                </div>
+            </form>
+        }
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

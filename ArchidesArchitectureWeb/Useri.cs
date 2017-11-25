@@ -23,7 +23,7 @@ namespace ArchidesArchitectureWeb
             this.ProjektiUsers = new HashSet<ProjektiUser>();
             this.Lajmis = new HashSet<Lajmi>();
         }
-    
+        [DisplayName("Admin")]
         public int UserID { get; set; }
         [Required(ErrorMessage = "Emri is required ")]
         public string Emri { get; set; }
@@ -43,14 +43,15 @@ namespace ArchidesArchitectureWeb
         [Required(ErrorMessage = "Username is required ")]
         public string Username { get; set; }
         [Required(ErrorMessage = "Password is required ")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         public string Pershkrimi { get; set; }
         public string Shkollimi { get; set; }
         public string PergaditjaProfesionale { get; set; }
         [Required(ErrorMessage = "Foto is required ")]
-        public string Foto { get; set; }
-        [DisplayName("Roli i Userit")]
-        
+        public string Foto { get; set; }  
+        //Kjo property nuk u kriju me entity
+        public string LoginErrorMessage { get; set; }
         public Nullable<int> RoliID { get; set; }
         public Nullable<bool> Activ { get; set; }
     

@@ -11,7 +11,8 @@ namespace ArchidesArchitectureWeb
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class LlojiArkitektura
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +22,7 @@ namespace ArchidesArchitectureWeb
         }
     
         public int LlojiArkitekturaID { get; set; }
-
+        [DisplayName("Lloji i Arkitektures")]
         public string LlojiArkitektura1 { get; set; }
         public Nullable<bool> Activ { get; set; }
     
