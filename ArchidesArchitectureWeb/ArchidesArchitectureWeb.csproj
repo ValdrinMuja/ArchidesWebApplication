@@ -160,6 +160,7 @@
     <Content Include="LogInIcons\backgroundlogin.jpg" />
     <Content Include="LogInIcons\littleiconuser.png" />
     <Content Include="LogInIcons\user.png" />
+    <Content Include="Logo\archideslogo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -301,6 +302,7 @@
     <Content Include="Views\Media\Edit.cshtml" />
     <Content Include="Views\Media\Index.cshtml" />
     <Content Include="Views\Login\UserIndex.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
