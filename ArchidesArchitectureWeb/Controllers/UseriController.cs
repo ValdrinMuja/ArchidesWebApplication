@@ -52,6 +52,7 @@ namespace ArchidesArchitectureWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+                string fileName;
                 db.Useris.Add(useri);
                 db.SaveChanges();
                 return RedirectToAction("Index");

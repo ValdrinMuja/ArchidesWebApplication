@@ -13,6 +13,7 @@ namespace ArchidesArchitectureWeb
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Web;
 
     public partial class Useri
     {
@@ -52,6 +53,8 @@ namespace ArchidesArchitectureWeb
         public string Foto { get; set; }  
         //Kjo property nuk u kriju me entity
         public string LoginErrorMessage { get; set; }
+        //As Qekjo nuk osht e bome me entity :P
+        public HttpPostedFileBase ImageFile { get; set; }
         public Nullable<int> RoliID { get; set; }
         public Nullable<bool> Activ { get; set; }
     
