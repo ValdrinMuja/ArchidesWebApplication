@@ -39,8 +39,8 @@ namespace ArchidesArchitectureWeb.Controllers
         // GET: ProjektiMedia/Create
         public ActionResult Create()
         {
-            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura" );
-            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID","MediaType");
+            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura1");
+            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType1");
             ViewBag.MediaID = new SelectList(db.Media, "MediaID", "MediaPath");
             ViewBag.ProjektiID = new SelectList(db.Projektis, "ProjektiID", "Titulli");
             return View();
@@ -51,7 +51,7 @@ namespace ArchidesArchitectureWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProjektiMedia projektiMedia, Medium media)
+        public ActionResult Create([Bind(Include = "ProjektiMediaID,ProjektiID,MediaID,Activ")] ProjektiMedia projektiMedia, [Bind(Include = "MediaID,MediaTypeID,LlojiArkitekturaID,MediaPath,Activ")] Medium media)
         {
             if (ModelState.IsValid)
             {
@@ -62,8 +62,8 @@ namespace ArchidesArchitectureWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura",media.LlojiArkitekturaID);
-            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType",media.MediaTypeID);
+            ViewBag.LlojiArkitekturaID = new SelectList(db.LlojiArkitekturas, "LlojiArkitekturaID", "LlojiArkitektura1", media.LlojiArkitekturaID);
+            ViewBag.MediaTypeID = new SelectList(db.MediaTypes, "MediaTypeID", "MediaType1", media.MediaTypeID);
             ViewBag.MediaID = new SelectList(db.Media, "MediaID", "MediaPath", projektiMedia.MediaID);
             ViewBag.ProjektiID = new SelectList(db.Projektis, "ProjektiID", "Titulli", projektiMedia.ProjektiID);
             return View(projektiMedia);

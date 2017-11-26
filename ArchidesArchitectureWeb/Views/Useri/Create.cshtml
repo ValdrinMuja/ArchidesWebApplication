@@ -3,34 +3,13 @@
 @{
     ViewBag.Title = "Create";
 }
+
 <h2>Create User</h2>
 
-@using (Html.BeginForm("Index", "Useri", FormMethod.Post, new { id = "target" }))
+@using (Html.BeginForm()) 
 {
-
-    <script>
-        $(function () {
-            $("#target").submit(function (event) {
-                event.preventDefault();
-                validateName();
-            });
-        });
-    </script>
-    <script type="text/javascript">
-
-    function validateName() {
-        var name = document.getElementById("#txtEmri").Value;
-
-        if (name = "") {
-            document.getElementById("#txtEmri").style.color = "red";
-        }
-        else {
-            document.getElementById("#txtEmri").style.color = "green"
-        }
-    }
-    </script>
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <h3>Form of User</h3>
         <hr />
@@ -38,15 +17,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Emri, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Emri, new { htmlAttributes = new { id = "txtemri", @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Emri, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Emri, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.ValidationMessageFor(model => model.Emri, "", new { @class = "text-danger"})
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Mbiemri, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Mbiemri, new { htmlAttributes = new { id = "txtmbiemri", @class = "form-control" } })
+                @Html.EditorFor(model => model.Mbiemri, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Mbiemri, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -54,7 +33,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Gjinia, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Gjinia, new { htmlAttributes = new { id = "txtgjinia", @class = "form-control" } })
+                @Html.EditorFor(model => model.Gjinia, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Gjinia, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -62,7 +41,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Vendlindja, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Vendlindja, new { htmlAttributes = new { id = "txtvendlindja", @class = "form-control" } })
+                @Html.EditorFor(model => model.Vendlindja, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Vendlindja, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -70,7 +49,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Datelindja, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Datelindja, new { htmlAttributes = new { id = "txtdatelindja", @class = "form-control", placeholder = "mm/dd/yyyy" } } )
+                @Html.EditorFor(model => model.Datelindja, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Datelindja, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -78,7 +57,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { id = "txtemail", @class = "form-control" } })
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -86,7 +65,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Telefoni, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Telefoni, new { htmlAttributes = new { id="txttelefoni", @class = "form-control" } })
+                @Html.EditorFor(model => model.Telefoni, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Telefoni, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -94,7 +73,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { id = "username", @class = "form-control" } })
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -102,7 +81,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { id = "txtpassword", @class = "form-control" } })
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -134,7 +113,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Foto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Foto, new { htmlAttributes = new { id = "txtfotoUser", @class = "form-control" } })
+                @Html.EditorFor(model => model.Foto, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Foto, "", new { @class = "text-danger" })
                 
             </div>
@@ -148,7 +127,7 @@
             </div>
         </div>
 
-        @*<div class="form-group">
+        <div class="form-group">
             @Html.LabelFor(model => model.Activ, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
@@ -156,7 +135,7 @@
                     @Html.ValidationMessageFor(model => model.Activ, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>*@
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -166,8 +145,21 @@
     </div>
 }
 
-@Styles.Render("")
+<script type="text/javascript">
 
+    function validateName()
+    {
+        var name = document.getElementById("#txtEmri").Value;
+        
+        if (name = "")
+        {
+            document.getElementById("#txtEmri").style.color = "red";
+        }
+        else {
+            document.getElementById("#txtEmri").style.color = "green"
+        }          
+    }
+</script>
 
 
 <div>
