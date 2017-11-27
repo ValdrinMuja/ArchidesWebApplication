@@ -52,6 +52,7 @@ namespace ArchidesArchitectureWeb
         //[Required(ErrorMessage = "Foto is required ")]
         public string Foto { get; set; }
         public HttpPostedFileBase ImageFile { get; set; }
+
         //Kjo property nuk u kriju me entity
         public string LoginErrorMessage { get; set; }
         //As Qekjo nuk osht e bome me entity :P

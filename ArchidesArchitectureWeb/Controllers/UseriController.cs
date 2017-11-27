@@ -53,6 +53,7 @@ namespace ArchidesArchitectureWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 string fileName = Path.GetFileNameWithoutExtension(useri.ImageFile.FileName);
                 string extension = Path.GetExtension(useri.ImageFile.FileName);
                 fileName = fileName + DateTime.Now.ToString("yymmssffff") + extension;
