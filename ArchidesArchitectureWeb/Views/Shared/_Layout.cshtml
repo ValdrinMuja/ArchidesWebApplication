@@ -65,9 +65,23 @@ else
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="@Url.Content((string)Session["foto"])" alt="Alternate Text" class="img-circle" width="45" height="45" />
                         @Session["username"]<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li style="color:limegreen; margin-left:20px;" >@Session["userRol"]</li>
+
+                            @if ((string)Session["userRol"] == "Admin")
+                            {
+                                 <li style="color:red; margin-left:20px;">@Session["userRol"]</li>
+                            }
+                            else
+                            {
+                                <li style="color:blue; margin-left:20px;">@Session["userRol"]</li>
+                            }
+
+
+                            @if (Session["userID"] == null)
+                            {
+                                Response.Redirect("~/Login/UserIndex");
+                            }
                             <li>@Html.ActionLink("Profili", "UserDetail", "Login")</li>
-                            <li> @Html.ActionLink("Edit profile", "Edit", "Useri")</li>
+                            <li> @Html.ActionLink("Edit profile", "UserEdit", "Login")</li>
                             <li role="separator" class="divider"></li>                          
                             <li role="separator" class="divider"></li>
                             <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
