@@ -36,7 +36,8 @@ namespace ArchidesArchitectureWeb.Controllers
 
         public ActionResult Logout()
         {
-            int userId = (int)Session["userID"];
+            Session["userID"] = null;
+            Session["username"] = null; 
             Session.Abandon();
             return RedirectToAction("UserIndex", "Login");
         }

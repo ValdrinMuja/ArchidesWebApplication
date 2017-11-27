@@ -1,14 +1,21 @@
 ﻿
-@*@if (Session["userID"] == null)
+@if (Session["userID"] == null)
 {
     Response.Redirect("~/Login/UserIndex");
-}*@
+}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~bundles/jquery")
+
+    <link href="~/plugin/bootstrapvalidator-master/dist/css/bootstrapValidator.css" rel="stylesheet" />
+    <script src="~/plugin/bootstrapvalidator-master/dist/js/bootstrapValidator.js"></script>
+    <script src="~/Scripts/ValidateUser.js"></script>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
@@ -74,5 +81,6 @@
         </div>
         <script src="~/Scripts/jquery-1.10.2.min.js"></script>
         <script src="~/Scripts/bootstrap.min.js"></script>
+         @RenderSection("scripts",required:false)
     </body>
     </html>

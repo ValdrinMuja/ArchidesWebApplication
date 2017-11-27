@@ -24,36 +24,55 @@ namespace ArchidesArchitectureWeb
             this.ProjektiUsers = new HashSet<ProjektiUser>();
             this.Lajmis = new HashSet<Lajmi>();
         }
-        [DisplayName("Admin")]
+        [DisplayName("User")]
         public int UserID { get; set; }
+
         [Required(ErrorMessage = "Emri is required ")]
+        [RegularExpression("^[A-Z]+[a-zA-Z]*$",ErrorMessage = "Emri start with capital letter and contains only characters")]
         public string Emri { get; set; }
+
         [Required(ErrorMessage = "Mbiemri is required ")]
+        [RegularExpression("^[A-Z]+[a-zA-Z]*$", ErrorMessage = "Mbiemri start with capital letter and contains only characters")]
         public string Mbiemri { get; set; }
+
         [Required(ErrorMessage = "Gjinia is required ")]
         public string Gjinia { get; set; }
+
         [Required(ErrorMessage = "Vendlindja is required ")]
         public string Vendlindja { get; set; }
+
         [Required(ErrorMessage = "Datelindja is required ")]
         public Nullable<System.DateTime> Datelindja { get; set; }
+
         [Required(ErrorMessage = "Email is required ")]
         [EmailAddress]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
         [Required(ErrorMessage = "Telefoni is required")]
+        [RegularExpression(@"^\d{1,9}$",ErrorMessage = "Please enter up to 9 digits for a contact number")]
         public string Telefoni { get; set; }
+
         [Required(ErrorMessage = "Username is required ")]
+        [RegularExpression("^[A-Z]+[a-zA-Z]+[0-9]*$", ErrorMessage = "Username start with capital letter and contains characters and numbers(optional)")]
         public string Username { get; set; }
+
         [Required(ErrorMessage = "Password is required ")]
+        [StringLength(18, MinimumLength = 8,ErrorMessage ="Password must be with minimum length of 8 and maximum length 18")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
         public string Pershkrimi { get; set; }
         public string Shkollimi { get; set; }
         public string PergaditjaProfesionale { get; set; }
-        public string Foto { get; set; }  
+
+        [RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.gif)$", ErrorMessage = "Only Image files allowed.")]
+        public string Foto { get; set; }
+        //As Qekjo nuk osht e bome me entity 
+        public HttpPostedFileBase ImageFile { get; set; }
         //Kjo property nuk u kriju me entity
         public string LoginErrorMessage { get; set; }
-        //As Qekjo nuk osht e bome me entity :P
-        public HttpPostedFileBase ImageFile { get; set; }
+
         public Nullable<int> RoliID { get; set; }
         public Nullable<bool> Activ { get; set; }
     

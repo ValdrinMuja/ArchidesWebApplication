@@ -12,6 +12,7 @@ namespace ArchidesArchitectureWeb
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class Roli
     {
@@ -23,6 +24,8 @@ namespace ArchidesArchitectureWeb
     
         public int RoliID { get; set; }
         [DisplayName("Roli i Userit")]
+        [Required(ErrorMessage = "Roli is required")]
+        [RegularExpression("^[A-Z]+[a-zA-Z]+[0-9]*$", ErrorMessage = "Roli start with capital letter and contains only characters numbers are optional")]
         public string Roli1 { get; set; }
         public Nullable<bool> Activ { get; set; }
     

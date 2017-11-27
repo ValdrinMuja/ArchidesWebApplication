@@ -232,6 +232,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\JSslideShow.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ValidateUser.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

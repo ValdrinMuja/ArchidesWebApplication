@@ -23,7 +23,9 @@ namespace ArchidesArchitectureWeb
         }
     
         public int KategoriaID { get; set; }
-       [DisplayName("Kategoria")]
+        [DisplayName("Kategoria")]
+        [Required(ErrorMessage = "Kategoria is required")]
+        [RegularExpression("^[A-Z]+[a-zA-Z]+[0-9]*$", ErrorMessage = "Kategoria start with capital letter and contains only characters, numbers are optional")]
         public string Kategoria1 { get; set; }
         public Nullable<bool> Activ { get; set; }
     

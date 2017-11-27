@@ -12,6 +12,7 @@ namespace ArchidesArchitectureWeb
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class LlojiArkitektura
     {
@@ -22,8 +23,12 @@ namespace ArchidesArchitectureWeb
         }
     
         public int LlojiArkitekturaID { get; set; }
+
         [DisplayName("Lloji i Arkitektures")]
+        [Required(ErrorMessage = "Lloji i Arkitektures is required")]
+        [RegularExpression("^[A-Z]+[a-zA-Z]+[0-9]*$", ErrorMessage = "Titulli start with capital letter and contains only characters, numbers are optional")]
         public string LlojiArkitektura1 { get; set; }
+
         public Nullable<bool> Activ { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

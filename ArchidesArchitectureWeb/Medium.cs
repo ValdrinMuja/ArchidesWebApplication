@@ -11,7 +11,8 @@ namespace ArchidesArchitectureWeb
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class Medium
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +24,10 @@ namespace ArchidesArchitectureWeb
         public int MediaID { get; set; }
         public Nullable<int> MediaTypeID { get; set; }
         public Nullable<int> LlojiArkitekturaID { get; set; }
+
+        public HttpPostedFileBase ImageFile { get; set; }
         public string MediaPath { get; set; }
+
         public Nullable<bool> Activ { get; set; }
     
         public virtual LlojiArkitektura LlojiArkitektura { get; set; }
