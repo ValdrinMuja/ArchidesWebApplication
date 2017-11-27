@@ -75,6 +75,7 @@ namespace ArchidesArchitectureWeb.Controllers
             }
             ViewBag.RoliID = new SelectList(db.Rolis, "RoliID", "Roli1", useri.RoliID);
             return View(useri);
+            //hahahahhahahhaa
         }
 
         // POST: Useri/Edit/5
