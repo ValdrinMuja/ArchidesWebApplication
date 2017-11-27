@@ -29,15 +29,21 @@ namespace ArchidesArchitectureWeb.Controllers
                 {
                     Session["userID"] = userDetails.UserID;
                     Session["username"] = userDetails.Username;
+                    Session["foto"] = userDetails.Foto;
                     return RedirectToAction("Index", "Home");
                 }          
             }               
         }
 
+        public ActionResult UserDetail()
+        {
+            int userID = (int)Session["userID"];
+            return RedirectToAction("Details/"+userID, "Useri");
+        }
+
         public ActionResult Logout()
         {
-            Session["userID"] = null;
-            Session["username"] = null; 
+            //int userId = (int)Session["userID"];
             Session.Abandon();
             return RedirectToAction("UserIndex", "Login");
         }

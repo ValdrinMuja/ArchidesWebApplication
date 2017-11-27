@@ -6,11 +6,10 @@
 
 <h2>Create User</h2>
 
-@using (Html.BeginForm("Create", "Useri", new { returnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post, new { id = "addUser" }))
-
+@using (Html.BeginForm("Create","Useri",FormMethod.Post,new {enctype="multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <h3>Form of User</h3>
         <hr />
@@ -18,8 +17,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Emri, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Emri, new { htmlAttributes = new { @class = "form-control"} })             
-                @Html.ValidationMessageFor(model => model.Emri, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Emri, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.ValidationMessageFor(model => model.Emri, "", new { @class = "text-danger"})
             </div>
         </div>
 
@@ -74,8 +73,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })*@
-                <input class="form-control User" name="Username" placeholder="Enter Name" />
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -100,7 +98,7 @@
             @Html.LabelFor(model => model.Shkollimi, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Shkollimi, new { htmlAttributes = new { @class = "form-control", placeholder = "Shkollimi is not necessary" } })
-                @Html.ValidationMessageFor(model => model.Shkollimi, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Shkollimi, "", new { @class = "text-danger"})
             </div>
         </div>
 
@@ -115,7 +113,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Foto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="ImageFile" required/>         
+                <input type="file" id="ImageFile" name="ImageFile" />         
             </div>
         </div>
 
@@ -127,6 +125,16 @@
             </div>
         </div>
 
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Activ, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Activ)
+                    @Html.ValidationMessageFor(model => model.Activ, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
@@ -134,7 +142,6 @@
         </div>
     </div>
 }
-
 
 <div>
     @Html.ActionLink("Back to List", "Index")
