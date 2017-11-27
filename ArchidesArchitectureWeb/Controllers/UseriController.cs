@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ArchidesArchitectureWeb;
+using System.IO;
 
 namespace ArchidesArchitectureWeb.Controllers
 {
@@ -52,13 +53,20 @@ namespace ArchidesArchitectureWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                string fileName;
+                string fileName = Path.GetFileNameWithoutExtension(useri.ImageFile.FileName);
+                string extension = Path.GetExtension(useri.ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssffff") + extension;
+                useri.Foto = "~/PhotoUser/" + fileName;
+                fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
+                useri.ImageFile.SaveAs(fileName);
+
                 db.Useris.Add(useri);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.RoliID = new SelectList(db.Rolis, "RoliID", "Roli1", useri.RoliID);
+            
             return View(useri);
         }
 

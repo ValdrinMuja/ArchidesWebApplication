@@ -49,12 +49,13 @@ namespace ArchidesArchitectureWeb
         public string Pershkrimi { get; set; }
         public string Shkollimi { get; set; }
         public string PergaditjaProfesionale { get; set; }
-        [Required(ErrorMessage = "Foto is required ")]
-        public string Foto { get; set; }  
+        //[Required(ErrorMessage = "Foto is required ")]
+        public string Foto { get; set; }
+        public HttpPostedFileBase ImageFile { get; set; }
         //Kjo property nuk u kriju me entity
         public string LoginErrorMessage { get; set; }
         //As Qekjo nuk osht e bome me entity :P
-        public HttpPostedFileBase ImageFile { get; set; }
+        
         public Nullable<int> RoliID { get; set; }
         public Nullable<bool> Activ { get; set; }
     
