@@ -1,8 +1,10 @@
 ﻿
-@*@if (Session["userID"] == null)
+@if (Session["userID"] == null)
 {
     Response.Redirect("~/Login/UserIndex");
-}*@
+}
+else
+{
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,8 +61,22 @@
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Logout", "UserIndex", "Login")</li>
-                    <li><h3 style="color:green">You are logged as admin</h3></li>                 
+                    @*<li>
+                        <a class="navbar-brand" href="~/Home/Index">
+                            <img src="@Url.Content((string)Session["foto"])" alt="Alternate Text" class="img-circle" width="45" height="45" />
+                        </a>
+                    </li>*@
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="@Url.Content((string)Session["foto"])" alt="Alternate Text" class="img-circle" width="45" height="45" />
+@Session["username"]<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Profili", "UserDetail", "Login")</li>
+                            <li role="separator" class="divider"></li>
+                            <li> @Html.ActionLink("Edit profile", "Edit", "Useri")</li>
+                            <li role="separator" class="divider"></li>
+                            <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
+                        </ul>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -76,3 +92,4 @@
         <script src="~/Scripts/bootstrap.min.js"></script>
     </body>
     </html>
+}

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ArchidesArchitectureWeb;
+using System.IO;
 
 namespace ArchidesArchitectureWeb.Controllers
 {
@@ -48,10 +49,20 @@ namespace ArchidesArchitectureWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,Emri,Mbiemri,Gjinia,Vendlindja,Datelindja,Email,Telefoni,Username,Password,Pershkrimi,Shkollimi,PergaditjaProfesionale,Foto,RoliID,Activ")] Useri useri)
+        public ActionResult Create([Bind(Include = "UserID,Emri,Mbiemri,Gjinia,Vendlindja,Datelindja,Email,Telefoni,Username,Password,Pershkrimi,Shkollimi,PergaditjaProfesionale,Foto,RoliID,Activ")] Useri useri,HttpPostedFileBase ImageFile)
         {
             if (ModelState.IsValid)
             {
+                if (ImageFile!=null)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+                    string extension = Path.GetExtension(ImageFile.FileName);
+                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    useri.Foto = "~/PhotoUser/" + fileName;
+                    fileName = Path.Combine(Server.MapPath("~/PhotoUser/"), fileName);
+                    ImageFile.SaveAs(fileName);
+                }
+                
                 db.Useris.Add(useri);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -75,7 +86,7 @@ namespace ArchidesArchitectureWeb.Controllers
             }
             ViewBag.RoliID = new SelectList(db.Rolis, "RoliID", "Roli1", useri.RoliID);
             return View(useri);
-            //hahahahhahahhaa
+           
         }
 
         // POST: Useri/Edit/5
