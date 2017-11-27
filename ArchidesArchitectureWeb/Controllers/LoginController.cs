@@ -42,6 +42,12 @@ namespace ArchidesArchitectureWeb.Controllers
             return RedirectToAction("Details/"+userID, "Useri");
         }
 
+        public ActionResult UserEdit()
+        {
+            int userID = (int)Session["userID"];
+            return RedirectToAction("Edit/" + userID, "Useri");
+        }
+
         public ActionResult Logout()
         {
             //int userId = (int)Session["userID"];
