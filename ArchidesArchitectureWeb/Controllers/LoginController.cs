@@ -29,6 +29,7 @@ namespace ArchidesArchitectureWeb.Controllers
                 {
                     Session["userID"] = userDetails.UserID;
                     Session["username"] = userDetails.Username;
+                    Session["userRol"] = userDetails.Roli.Roli1;
                     Session["foto"] = userDetails.Foto;
                     return RedirectToAction("Index", "Home");
                 }          

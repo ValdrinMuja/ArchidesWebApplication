@@ -66,7 +66,6 @@ namespace ArchidesArchitectureWeb
         public string Shkollimi { get; set; }
         public string PergaditjaProfesionale { get; set; }
 
-        [RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.gif)$", ErrorMessage = "Only Image files allowed.")]
         public string Foto { get; set; }
         //As Qekjo nuk osht e bome me entity 
         public HttpPostedFileBase ImageFile { get; set; }
