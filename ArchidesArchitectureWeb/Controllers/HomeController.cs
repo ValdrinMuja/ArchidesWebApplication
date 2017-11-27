@@ -12,7 +12,7 @@ namespace ArchidesArchitectureWeb.Controllers
         public ActionResult Index()
         {
             return View();
-        }
+        }//k
 
         public ActionResult About()
         {
