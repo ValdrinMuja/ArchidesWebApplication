@@ -151,6 +151,7 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\costum.css" />
     <Content Include="Content\LogInStyle.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\SlideShow.css" />
