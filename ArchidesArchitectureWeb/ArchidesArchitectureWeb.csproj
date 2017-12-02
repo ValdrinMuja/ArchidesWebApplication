@@ -153,8 +153,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\costum.css" />
     <Content Include="Content\LogInStyle.css" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\sitee.css" />
     <Content Include="Content\SlideShow.css" />
+    <Content Include="Content\styleUser.css" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
