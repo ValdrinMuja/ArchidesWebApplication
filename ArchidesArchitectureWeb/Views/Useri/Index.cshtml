@@ -4,118 +4,171 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Emri)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Mbiemri)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Gjinia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Vendlindja)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Datelindja)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefoni)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pershkrimi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Shkollimi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PergaditjaProfesionale)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Foto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Activ)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Roli.Roli1)
-        </th>
-        <th></th>
-    </tr>
+    <!-- Website CSS style -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Website Font style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link href="~/Content/styleUser.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <h2>Index</h2>
+      
+   
+      @foreach (var item in Model)
+      {
+            <div class="main-login main-center">
+                <div class="row">
+                    <div class="dropdown col-md-1 col-md-offset-11">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="glyphicon glyphicon-th-list"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li>@Html.ActionLink("Edit", "Edit", new { id = item.UserID })</li>
+                            <li>@Html.ActionLink("Details", "Details", new { id = item.UserID })</li>
+                            <li>@Html.ActionLink("Delete", "Delete", new { id = item.UserID })</li>
+                        </ul>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <img src="@Url.Content(item.Foto)" width="70px" height="70px" alt="Alternate Text" class="img-circle" />
+                        <label for="name" class="cols-sm-2 control-label">
+                            @Html.DisplayFor(modelItem => item.Emri)
+                        </label>
+                        <label for="surname" class="cols-sm-2 control-label">
+                            @Html.DisplayFor(modelItem => item.Mbiemri)
+                        </label>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Emri)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mbiemri)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gjinia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Vendlindja)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Datelindja)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefoni)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pershkrimi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Shkollimi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PergaditjaProfesionale)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Foto)
-            @*<div>
-                <img src="@Url.Content(item.Foto)" alt="Alternate Text" width="50px" height="50px" />
-            </div>*@
-           
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Activ)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Roli.Roli1)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UserID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserID })
-        </td>
-    </tr>
-}
+                    </div>
+                </div>
+            <br />
+            }
 
-</table>
+            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+            <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Emri)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mbiemri)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gjinia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vendlindja)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Datelindja)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefoni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pershkrimi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Shkollimi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PergaditjaProfesionale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Foto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activ)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Roli.Roli1)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Emri)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mbiemri)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gjinia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vendlindja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Datelindja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefoni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pershkrimi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shkollimi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PergaditjaProfesionale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Foto)
+                @*<div>
+                    <img src="@Url.Content(item.Foto)" alt="Alternate Text" width="50px" height="50px" />
+                </div>
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activ)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Roli.Roli1)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.UserID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.UserID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.UserID })
+            </td>
+        </tr>
+    }
+
+    </table>*@
