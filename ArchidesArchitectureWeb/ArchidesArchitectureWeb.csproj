@@ -149,13 +149,17 @@
       <DependentUpon>ArchidesModelAdo.edmx</DependentUpon>
       <LastGenOutput>ArchidesModelAdo.cs</LastGenOutput>
     </Content>
+    <Content Include="Content\about.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cardOfUsers.css" />
+    <Content Include="Content\contactUs.css" />
     <Content Include="Content\costum.css" />
     <Content Include="Content\LogInStyle.css" />
     <Content Include="Content\sitee.css" />
     <Content Include="Content\SlideShow.css" />
     <Content Include="Content\styleUser.css" />
+    <Content Include="favicon-16x16.png" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -169,6 +173,8 @@
       <DependentUpon>ArchidesModelAdo.edmx</DependentUpon>
     </Content>
     <Content Include="Logo\archideslogo.png" />
+    <Content Include="Logo\logoarchides.bmp" />
+    <Content Include="Logo\videoarchitecture.m4v" />
     <Content Include="plugin\bootstrapvalidator-master\.gitignore" />
     <Content Include="plugin\bootstrapvalidator-master\CHANGELOG.md" />
     <Content Include="plugin\bootstrapvalidator-master\dist\css\bootstrapValidator.scss" />
@@ -235,7 +241,9 @@
     <Content Include="Scripts\JSslideShow.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\ValidateUser.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -376,6 +384,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="PhotoUser\" />
+    <Folder Include="Views\ContactUs\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -395,7 +404,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>58202</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:58202/</IISUrl>
+          <IISUrl>http://localhost:58202/Home</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
