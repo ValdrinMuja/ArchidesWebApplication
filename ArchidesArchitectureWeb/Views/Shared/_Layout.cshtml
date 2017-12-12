@@ -8,14 +8,15 @@ else
 <!DOCTYPE html>
 <html>
 <head>
+   
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/SlideShow.css" rel="stylesheet" />
-    
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link rel="shortcut icon" href="~/favicon-16x16.png" type="image/x-icon" />
 </head>
 <body>
 
@@ -30,7 +31,7 @@ else
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="~/Home/Index">
-                    <img src="~/Logo/archideslogo.png" width="30" height="30" alt="">
+                    <img src="~/Logo/logoarchides.bmp"  width="230" height="90" alt=""/>
                 </a>
             </div>
           
@@ -95,9 +96,8 @@ else
     </nav>                                                                                                                                                                                                                 
         <div class="container body-content">
             @RenderBody()
-            <hr />
             <footer>
-                <p>&copy; @DateTime.Now.Year - Archides Web</p>
+        
             </footer>
         </div>
         <script src="~/Scripts/jquery-1.10.2.min.js"></script>
