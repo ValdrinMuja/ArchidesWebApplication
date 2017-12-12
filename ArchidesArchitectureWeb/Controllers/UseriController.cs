@@ -94,10 +94,19 @@ namespace ArchidesArchitectureWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,Emri,Mbiemri,Gjinia,Vendlindja,Datelindja,Email,Telefoni,Username,Password,Pershkrimi,Shkollimi,PergaditjaProfesionale,Foto,RoliID,Activ")] Useri useri)
+        public ActionResult Edit([Bind(Include = "UserID,Emri,Mbiemri,Gjinia,Vendlindja,Datelindja,Email,Telefoni,Username,Password,Pershkrimi,Shkollimi,PergaditjaProfesionale,Foto,RoliID,Activ")] Useri useri, HttpPostedFileBase ImageFile)
         {
             if (ModelState.IsValid)
             {
+                if (ImageFile != null)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+                    string extension = Path.GetExtension(ImageFile.FileName);
+                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    useri.Foto = "~/PhotoUser/" + fileName;
+                    fileName = Path.Combine(Server.MapPath("~/PhotoUser/"), fileName);
+                    ImageFile.SaveAs(fileName);
+                }
                 db.Entry(useri).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

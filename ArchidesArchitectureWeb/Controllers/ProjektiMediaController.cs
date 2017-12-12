@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ArchidesArchitectureWeb;
+using System.IO;
 
 namespace ArchidesArchitectureWeb.Controllers
 {
@@ -51,10 +52,21 @@ namespace ArchidesArchitectureWeb.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProjektiMediaID,ProjektiID,MediaID,Activ")] ProjektiMedia projektiMedia, [Bind(Include = "MediaID,MediaTypeID,LlojiArkitekturaID,MediaPath,Activ")] Medium media)
+        public ActionResult Create([Bind(Include = "ProjektiMediaID,ProjektiID,MediaID,Activ")] ProjektiMedia projektiMedia, [Bind(Include = "MediaID,MediaTypeID,LlojiArkitekturaID,MediaPath,Activ")] Medium media, HttpPostedFileBase ImageFile)
         {
             if (ModelState.IsValid)
             {
+
+                if (media.ImageFile != null)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+                    string extension = Path.GetExtension(ImageFile.FileName);
+                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    media.MediaPath = "~/MediaImages/" + fileName;
+                    fileName = Path.Combine(Server.MapPath("~/MediaImages/"), fileName);
+                    ImageFile.SaveAs(fileName);
+                }
+                projektiMedia.MediaID = media.MediaID;
                 db.Media.Add(media);
                 db.SaveChanges();
                 db.ProjektiMedias.Add(projektiMedia);

@@ -28,6 +28,7 @@ namespace ArchidesArchitectureWeb
         public HttpPostedFileBase ImageFile { get; set; }
         public string MediaPath { get; set; }
 
+
         public Nullable<bool> Activ { get; set; }
     
         public virtual LlojiArkitektura LlojiArkitektura { get; set; }
