@@ -3,136 +3,131 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
-
-<div>
-    <h4>Useri</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Emri)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Emri)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Mbiemri)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Mbiemri)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Gjinia)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Gjinia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Vendlindja)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Vendlindja)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Datelindja)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Datelindja)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Telefoni)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Telefoni)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Username)
-        </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>*@
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Pershkrimi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Pershkrimi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Shkollimi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Shkollimi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PergaditjaProfesionale)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PergaditjaProfesionale)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Foto)
-        </dt>
-
-        <dd>
-            <img src="@Url.Content(Model.Foto)" alt="Alternate Text" width="300" height="300"/>
-        </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.Activ)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Activ)
-        </dd>*@
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Roli.Roli1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Roli.Roli1)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    <div class="container">
+        <div class="well col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+            <div class="row user-infos cyruxx">
+                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">User Details</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
+                                           <img src="@Url.Content(Model.Foto)" class="img-circle" alt="Alternate Text" width="80" height="80"/>
+                                </div>
+                                <div class="col-xs-2 col-sm-2 hidden-md hidden-lg">
+                                    <img src="@Url.Content(Model.Foto)" class="img-circle" alt="Alternate Text" width="50" height="50" />
+                                </div>
+                                <div class="col-xs-10 col-sm-10 hidden-md hidden-lg">
+                                    <strong>Information</strong><br>
+                                    <dl>
+                                        <dt>Role:</dt>
+                                        <dt>@Html.DisplayFor(model => model.Roli.Roli1):</dt>
+                                        <dd>Name:</dd>
+                                        <dt>@Html.DisplayFor(model => model.Emri):</dt>
+                                        <dd>Surname:</dd>
+                                        <dt>@Html.DisplayFor(model => model.Mbiemri)</dt>     
+                                        <dt>Gender:</dt>
+                                        <dd>@Html.DisplayFor(model => model.Gjinia)</dd>
+                                        <dt>Birthplace:</dt>
+                                        <dt>@Html.DisplayFor(model => model.Vendlindja)</dt>
+                                        <dd>Birthdate:</dd>
+                                        <dt>@Html.DisplayFor(model => model.Datelindja)</dt>                         
+                                        <dt>Email:</dt>
+                                        <dd>@Html.DisplayFor(model => model.Email)</dd>
+                                        <dt>Telefoni:</dt>
+                                        <dd>@Html.DisplayFor(model => model.Telefoni)</dd>
+                                        <dt>Username:</dt>
+                                        <dd>@Html.DisplayFor(model => model.Username)</dd>
+                                        <dt>Description:</dt>
+                                        <dd>@Html.DisplayFor(model => model.Pershkrimi)</dd>
+                                        @*<dt>@Html.DisplayNameFor(model => model.PergaditjaProfesionale)</dt>
+                                        <dd>@Html.DisplayFor(model => model.PergaditjaProfesionale)</dd>*@
+                                    </dl>
+                                </div>
+                                <div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">
+                                    <strong>Information</strong><br>
+                                    <table class="table table-user-information">
+                                        <tbody>                                         
+                                            <tr>
+                                                <td>Role:</td>
+                                                <td>@Html.DisplayFor(model => model.Roli.Roli1)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Name:</td>
+                                                <td>@Html.DisplayFor(model => model.Emri)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Surname:</td>
+                                                <td>@Html.DisplayFor(model => model.Mbiemri)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gender:</td>
+                                                <td>@Html.DisplayFor(model => model.Gjinia)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Birthplace:</td>
+                                                <td>@Html.DisplayFor(model => model.Vendlindja)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Birthdate:</td>
+                                                <td>@Html.DisplayFor(model => model.Datelindja)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email:</td>
+                                                <td>@Html.DisplayFor(model => model.Email)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Phone Number:</td>
+                                                <td>@Html.DisplayFor(model => model.Telefoni)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Username:</td>
+                                                <td>@Html.DisplayFor(model => model.Username)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Description:</td>
+                                                <td>@Html.DisplayFor(model => model.Pershkrimi)</td>
+                                            </tr>
+                                            @*<tr>
+                                                <td>@Html.DisplayNameFor(model => model.PergaditjaProfesionale)</td>
+                                                <td>@Html.DisplayFor(model => model.PergaditjaProfesionale)</td>
+                                            </tr>*@
+                                            @*<tr>
+                                                <td>@Html.DisplayNameFor(model => model.Password)</td>
+                                                <td>@Html.DisplayFor(model => model.Password)</td>
+                                            </tr>*@
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <button class="btn btn-sm btn-primary" type="button"
+                                    data-toggle="tooltip"
+                                    data-original-title="Send message to user">
+                                <i class="glyphicon glyphicon-envelope"></i>
+                            </button>
+                            <span class="pull-right">
+                                <button class="btn btn-sm btn-warning" type="button"
+                                        data-toggle="tooltip"
+                                        data-original-title="Edit this user">
+                                    <i class="glyphicon glyphicon-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger" type="button"
+                                        data-toggle="tooltip"
+                                        data-original-title="Remove this user">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+            </div>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>

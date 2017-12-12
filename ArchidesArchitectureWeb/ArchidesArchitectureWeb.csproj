@@ -155,6 +155,7 @@
     <Content Include="Content\cardOfUsers.css" />
     <Content Include="Content\contactUs.css" />
     <Content Include="Content\costum.css" />
+    <Content Include="Content\detailsUser.css" />
     <Content Include="Content\LogInStyle.css" />
     <Content Include="Content\sitee.css" />
     <Content Include="Content\SlideShow.css" />
