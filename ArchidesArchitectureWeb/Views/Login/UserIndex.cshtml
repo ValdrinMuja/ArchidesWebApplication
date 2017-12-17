@@ -23,22 +23,22 @@
         <h3>Log In Here</h3>
         @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
         {
+           
             <form>
                 <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
-                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                @Html.ValidationMessageFor(model => model.Username)
+                @Html.ValidationMessageFor(model => model.Username, "", new { htmlAttributes = new { id = "txtMessageUsername" } })
+        
                 <div class"inputBox">
-                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new {  placeholder = "Username" }})
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { id="txtUsername", placeholder="Username"}})
                 </div>
             
-                @Html.ValidationMessageFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password, "", new { htmlAttributes = new { id ="txtMessagePassword"} })
                 <div class"inputBox">
-                    <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { placeholder = "Password" } })
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { id="txtPassword", placeholder = "Password" } })
                 </div>
                 
                 <div>
-                  <input class="btnLogin" type="submit" name="name" value="Login" />
+                  <input class="btnLogin" id="btnLogin" type="submit" name="name" value="Login" />
                 </div>
             </form>
         }
@@ -48,3 +48,4 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>
+

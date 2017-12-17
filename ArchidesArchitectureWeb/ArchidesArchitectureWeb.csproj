@@ -344,7 +344,6 @@
     <Content Include="Views\Lajmi\Edit.cshtml" />
     <Content Include="Views\Lajmi\Index.cshtml" />
     <Content Include="Views\Useri\Create.cshtml" />
-    <Content Include="Views\Useri\Delete.cshtml" />
     <Content Include="Views\Useri\Details.cshtml" />
     <Content Include="Views\Useri\Edit.cshtml" />
     <Content Include="Views\Useri\Index.cshtml" />
