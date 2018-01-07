@@ -3,85 +3,45 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Titulli)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lokacioni)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Viti)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Madhesia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Statusi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pershkrimi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UploadTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Activ)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Kategoria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Useri)
-        </th>
-        <th></th>
-    </tr>
+<head>
+    <link href="~/Content/projectStyle.css" rel="stylesheet" />
+</head>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Titulli)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lokacioni)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Viti)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Madhesia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Statusi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pershkrimi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UploadTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Activ)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kategoria.Kategoria1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Useri.Emri)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProjektiID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProjektiID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProjektiID })
-        </td>
-    </tr>
+
+
+@foreach (var item in Model)
+{
+    <div class="col-sm-8 col-md-6 col-lg-4 mt-4">
+        <div class="card hovercard">
+            <div class="row">        
+                    <img src="~/ImagesSlideShow/img2.jpg" width="350px" height="250px" alt="User Photos" />        
+                <div class="info">
+                    <div class="title">
+                        <label class="cols-sm-2 control-label">
+                            @Html.DisplayFor(modelItem => item.Titulli)
+                        </label>
+                    </div>                                                                             
+                </div>
+            </div>
+            <div class="panel-footer">
+                @using (Html.BeginForm("Delete", "Projekti", new { id = item.ProjektiID }))
+                {
+                    <button class="btn-danger" type="button" name="Delete" onclick="return confirm('Are you sure you want to delete project with name: @item.Titulli')">Delete</button>
+                }
+
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProjektiID })
+
+
+                @using (Html.BeginForm("Details", "Projekti", new { id = item.ProjektiID }))
+                {
+                    <button class="btn-primary" type="submit">Go to Details</button>
+                }
+            </div>
+
+        </div>
+    </div>
 }
 
-</table>

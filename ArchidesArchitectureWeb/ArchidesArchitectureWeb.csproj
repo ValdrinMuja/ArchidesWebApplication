@@ -177,6 +177,7 @@
     <Content Include="Content\costum.css" />
     <Content Include="Content\detailsUser.css" />
     <Content Include="Content\LogInStyle.css" />
+    <Content Include="Content\projectStyle.css" />
     <Content Include="Content\sitee.css" />
     <Content Include="Content\SlideShow.css" />
     <Content Include="Content\styleUser.css" />

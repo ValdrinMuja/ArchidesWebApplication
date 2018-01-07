@@ -49,19 +49,23 @@
                         </article>
                     </div>
                 </div>
+   
               
-                <div class="panel-footer">
-                   
-                          
+                <div class="panel-footer">                  
                         @using (Html.BeginForm("Delete", "Useri", new { id = item.UserID }))
                         {
-                            <input class="btn-danger" type="submit" value="Delete" onclick="return confirm('Are you sure you want to Delete: @item.Emri @item.Mbiemri')" />                          
-                        }      
-                    @Html.ActionLink("More Details", "Details", new { id = item.UserID })
+                            <button class="btn-danger" type="button" name="Delete" onclick="return confirm('Are you sure you want to Delete: @item.Emri @item.Mbiemri')">Delete</button>
+                        }
 
-                    @Html.ActionLink("Edit", "Edit", new { id = item.UserID })
-         
+                        @Html.ActionLink("Edit", "Edit", new { id = item.UserID })
+
+
+                        @using (Html.BeginForm("Details", "Useri", new { id = item.UserID }))
+                        {
+                            <button class="btn-primary" type="submit">Details</button>
+                        }
                 </div>
+               
             </div>
         </div>
     }

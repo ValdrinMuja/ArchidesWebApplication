@@ -26,11 +26,11 @@ namespace ArchidesArchitectureWeb
         public int ProjektiID { get; set; }
 
         [Required(ErrorMessage = "Titulli i Projektit is required")]
-        [RegularExpression("^[A-Z]+[a-zA-Z]+[0-9]*$", ErrorMessage = "Titulli i projektit start with capital letter and contains only characters, numbers are optional")]
+        //[RegularExpression("^[A-Z]+[a-zA-Z]+[0-9]*$", ErrorMessage = "Titulli i projektit start with capital letter and contains only characters, numbers are optional")]
         public string Titulli { get; set; }
 
         [Required(ErrorMessage = "Lokacioni i Projektit is required")]
-        [RegularExpression("^[A-Z]+[a-zA-Z]+[0-9]*$", ErrorMessage = "Lokacioni i projektit start with capital letter and contains only characters, numbers are optional")]
+        //[RegularExpression("^[A-Z]+[a-zA-Z]+[0-9]*$", ErrorMessage = "Lokacioni i projektit start with capital letter and contains only characters, numbers are optional")]
         public string Lokacioni { get; set; }
 
         public Nullable<System.DateTime> Viti { get; set; }
@@ -41,7 +41,7 @@ namespace ArchidesArchitectureWeb
         public string Statusi { get; set; }
 
         [Required(ErrorMessage = "Pershkrimi i Projektit is required")]
-        [RegularExpression("^[A-Z]+[a-zA-Z]+[0-9]*$", ErrorMessage = "Pershrkimi i projektit start with capital letter and contains only characters, numbers are optional")]
+        //[RegularExpression("^[A-Z]+[a-zA-Z]+[0-9]*$", ErrorMessage = "Pershrkimi i projektit start with capital letter and contains only characters, numbers are optional")]
         public string Pershkrimi { get; set; }
 
         public Nullable<System.DateTime> UploadTime { get; set; }

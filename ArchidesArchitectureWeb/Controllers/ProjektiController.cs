@@ -115,7 +115,6 @@ namespace ArchidesArchitectureWeb.Controllers
 
         // POST: Projekti/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Projekti projekti = db.Projektis.Find(id);

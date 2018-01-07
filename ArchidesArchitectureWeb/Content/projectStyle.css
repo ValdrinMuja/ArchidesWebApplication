@@ -167,8 +167,9 @@
             overflow: hidden;
             font-size: 12px;
             line-height: 16px;
-            color: #737373;
+            color: blue;
             text-overflow: ellipsis;
+           
         }
 
     .card.people .card-bottom {
@@ -232,7 +233,8 @@
             overflow: hidden;
             font-size: 12px;
             line-height: 20px;
-            color: #737373;
+            color:#000000;
+            padding: 3px, 3px, 3px;
             text-overflow: ellipsis;
         }
 
